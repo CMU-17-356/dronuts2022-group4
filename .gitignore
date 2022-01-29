@@ -1,0 +1,15 @@
+# This sets the `.gitignore` to be a *whitelist* by default.
+**/**
+!*/
+
+
+# Whitelist
+!*.md
+!LICENSE
+!.gitignore
+!.travis.yml
+!Dockerfile
+!docker-compose.yml
+
+
+# Blacklist (overrides Whitelist)
