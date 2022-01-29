@@ -1,0 +1,24 @@
+{
+  "name": "dronuts",
+  "version": "0.0.1",
+  "description": "Dronuts project for CMU's 17-356",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CMU-17-356/dronuts2022-group4.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CMU-17-356/dronuts2022-group4/issues"
+  },
+  "homepage": "https://github.com/CMU-17-356/dronuts2022-group4#readme",
+  "dependencies": {
+    "eslint": "^8.8.0",
+    "eslint-watch": "^8.0.0",
+    "jest": "^27.4.7"
+  }
+}

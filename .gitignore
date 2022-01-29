@@ -10,6 +10,9 @@
 !.travis.yml
 !Dockerfile
 !docker-compose.yml
+!package.json
+!package-lock.json
 
 
 # Blacklist (overrides Whitelist)
+node_modules/*
