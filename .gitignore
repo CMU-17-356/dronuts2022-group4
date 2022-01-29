@@ -12,6 +12,7 @@
 !docker-compose.yml
 !package.json
 !package-lock.json
+!.github/workflows/*.yml
 
 
 # Blacklist (overrides Whitelist)
