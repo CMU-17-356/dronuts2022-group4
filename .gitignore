@@ -8,10 +8,10 @@
 !LICENSE
 !.gitignore
 !.travis.yml
-!Dockerfile
-!docker-compose.yml
-!package.json
-!package-lock.json
+!*/Dockerfile
+!*/docker-compose.yml
+!*/package.json
+!*/package-lock.json
 !.github/workflows/*.yml
 
 !*.html
@@ -24,8 +24,8 @@
 !*.prettierignore
 !*.prettierrc
 !*.tsbuildinfo
-!*.map
 
 
 # Blacklist (overrides Whitelist)
 **/node_modules/*
+**/dist/*
