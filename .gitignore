@@ -14,6 +14,16 @@
 !package-lock.json
 !.github/workflows/*.yml
 
+!*.ts
+!*.js
+!*.json
+!*.dockerignore
+!*.eslintignore
+!*.prettierignore
+!*.prettierrc
+!*.tsbuildinfo
+!*.map
+
 
 # Blacklist (overrides Whitelist)
-node_modules/*
+**/node_modules/*
