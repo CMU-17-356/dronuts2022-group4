@@ -4,7 +4,7 @@ import GoogleMapReact from 'google-map-react';
 // component imports
 import { Grid, Text, Button } from '@geist-ui/react';
 import donut_img from '../straw-frosting-donut.png';
-import google_maps_credentials_file from '../google_maps_api_credentials.txt';
+import google_maps_credentials_file from '../google_maps_api_credentials.json';
 
 
 export interface Center {
@@ -24,26 +24,22 @@ const default_loc = {center: default_center, zoom: 11};
 // pictures next to location, dropoff indicator by for drone, donut images
 
 function OrderStatus() {
-  const [location, setLocation] = useState<Location>(default_loc);
-  const [api_key, setApiKey] = useState("");
-
   function getApiCredentials() {
-    fetch(google_maps_credentials_file)
-      .then(r => r.text())
-      .then(text => setApiKey(text));
+    const key = google_maps_credentials_file.api_key;
+    //console.log(key);
+    return key;
   }
 
-  useEffect(() => {
-    getApiCredentials();
-  }, []);
-
+  const [location, setLocation] = useState<Location>(default_loc);
+  const [api_key, setApiKey] = useState(getApiCredentials());
+  
   return (
     <div className='DonutApp'>
       <Grid.Container gap={2}>
         <Grid xs={12} >
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
-                bootstrapURLKeys={{ key: api_key }}
+                bootstrapURLKeys={{ key: `${api_key}` }}
                 defaultCenter={location.center}
                 defaultZoom={location.zoom}
                 >
