@@ -17,8 +17,10 @@
 !*.html
 !*.css
 !*.ts
+!*.tsx
 !*.js
 !*.json
+!*.txt
 !*.dockerignore
 !*.eslintignore
 !*.prettierignore
