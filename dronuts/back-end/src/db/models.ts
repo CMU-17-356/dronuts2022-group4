@@ -82,7 +82,14 @@ import mongoose, { Document, Model, Types } from 'mongoose'
     id: { type: Number, required: true },
     customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
     address: { type: Number, required: true },
-    status: { type: String, required: true, enum: ['In Progress', 'Completed'] },
+    status: { type: String, 
+              required: true, 
+              enum: ['Drone Heading Towards Store', 
+                     'Drone Heading Towards Destination', 
+                     'Waiting For Pickup', 
+                     'Waiting For Load',
+                     'Completed'] 
+            },
     purchase_date: { type: Date, required: true, default:Date.now },
     items: { type: [Schema.Types.ObjectId], ref: 'Donut', required: true } 
   });
