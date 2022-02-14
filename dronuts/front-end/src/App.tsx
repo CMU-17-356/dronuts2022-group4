@@ -13,6 +13,7 @@ const navigation = {
     { name: 'Donut Item Availability', to: './components/DonutAvailabilityItem' },
     { name: 'Donut Availability', to: './components/DonutAvailability' },
     { name: 'OrderStatus', to: './components/OrderStatus' },
+    { name: 'Loading Instructions', to: './components/LoadingDroneInstructions' }
   ]
 };
 
