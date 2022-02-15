@@ -18,7 +18,6 @@
 !*.css
 !*.ts
 !*.tsx
-!*.js
 !*.json
 !*.txt
 !*.png

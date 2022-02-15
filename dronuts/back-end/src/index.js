@@ -19,5 +19,5 @@ app.get('/donuts', (req, res) => {
     res.status(200).send(fakeDonuts_json_1.default);
 });
 app.listen(port, () => {
-    console.log(`Todo-App listening on localhost:${port}`);
+    console.log(`Dronuts backend listening on localhost:${port}`);
 });
