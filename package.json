@@ -29,6 +29,7 @@
     "sinon": "^13.0.1"
   },
   "devDependencies": {
+    "@types/google-map-react": "^2.1.4",
     "@types/jest": "^27.4.0",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.3",
