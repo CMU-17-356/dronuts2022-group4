@@ -5,7 +5,8 @@ import DonutAvailability from './components/DonutAvailability'
 import OrderStatus from './components/OrderStatus'
 import NavbarScroller from './components/NavbarScroller';
 import DonutAvailabilityItem from './components/DonutAvailabilityItem';
-import LoadingDroneInstructions from './components/LoadingDroneInstructions';
+import LoadingDroneInstructions from './components/LoadOrders';
+import LoadOrders from './components/LoadOrders';
 
 
 //navigation ordering for the navbar
@@ -27,7 +28,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <NavbarScroller brand={brand} links={links} />
-        <LoadingDroneInstructions/>
+        <LoadOrders/>
       </header>
     </div>
   );

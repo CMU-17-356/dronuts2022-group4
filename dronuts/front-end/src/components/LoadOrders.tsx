@@ -23,7 +23,7 @@ const default_loc = {center: default_center, zoom: 11};
 // Progress bar sections 
 // pictures next to location, dropoff indicator by for drone, donut images
 
-function LoadingDroneInstructions() {
+function LoadOrders() {
   function getApiCredentials() {
     const key = google_maps_credentials_file.api_key;
     //console.log(key);
@@ -66,4 +66,4 @@ function LoadingDroneInstructions() {
   );
 }
 
-export default LoadingDroneInstructions;
+export default LoadOrders;
