@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import GoogleMapReact from 'google-map-react';
+import React from 'react';
+// import GoogleMapReact from 'google-map-react'
 
 // component imports
-import { Grid, Text, Button } from '@geist-ui/react';
-import donut_img from '../straw-frosting-donut.png';
-import google_maps_credentials_file from '../google_maps_api_credentials.json';
+import { Grid, Text, Button } from '@geist-ui/react'
+// import google_maps_credentials_file from '../google_maps_api_credentials.json'
 
 
 export interface Center {
@@ -16,21 +15,23 @@ export interface Location {
     zoom: number
 }
 
-const default_center = {lat: 40.44, lng: -79.99};
-const default_loc = {center: default_center, zoom: 11};
+// const default_center = {lat: 40.44, lng: -79.99};
+// const default_loc = {center: default_center, zoom: 11};
 
 // bring line down
-// Progress bar sections 
+// Progress bar sections
 // pictures next to location, dropoff indicator by for drone, donut images
 
 function LoadOrders() {
+  /*
   function getApiCredentials() {
     const key = google_maps_credentials_file.api_key;
     //console.log(key);
     return key;
   }
+  */
 
-  
+
   return (
     <div className='DonutApp'>
       <Grid.Container gap={1}>

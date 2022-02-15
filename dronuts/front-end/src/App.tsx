@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 // import './App.css';
-import DonutAvailability from './components/DonutAvailability'
-import OrderStatus from './components/OrderStatus'
-import NavbarScroller from './components/NavbarScroller';
-import DonutAvailabilityItem from './components/DonutAvailabilityItem';
-import LoadingDroneInstructions from './components/LoadOrders';
+// import DonutAvailability from './components/DonutAvailability'
+// import OrderStatus from './components/OrderStatus'
+import NavbarScroller from './components/NavbarScroller'
+// import DonutAvailabilityItem from './components/DonutAvailabilityItem'
+// import LoadingDroneInstructions from './components/LoadOrders'
 import LoadOrders from './components/LoadOrders';
 
 
