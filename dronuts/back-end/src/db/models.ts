@@ -3,7 +3,7 @@ import mongoose, { Document, Model, Types } from 'mongoose'
 
   // Customer
   export interface CustomerInterface extends Document {
-    title: string
+    id: number
     first_name: string
     last_name: string
     phone_number: string
@@ -40,7 +40,7 @@ import mongoose, { Document, Model, Types } from 'mongoose'
     price: number
     desc: string
     img_url: string
-    nutrition_info: [string]
+    nutrition_info: string[]
   }
 
   const donutSchema = new Schema({
@@ -75,7 +75,7 @@ import mongoose, { Document, Model, Types } from 'mongoose'
     address: string,
     status: string,
     purchase_date: Date,
-    items: [Types.ObjectId]
+    items: Types.ObjectId[]
   }
 
   const orderSchema = new Schema({
@@ -94,7 +94,7 @@ import mongoose, { Document, Model, Types } from 'mongoose'
     items: { type: [Schema.Types.ObjectId], ref: 'Donut', required: true } 
   });
 
-  export const Customer : Model<CustomerInterface> = mongoose.model('Customer', customerSchema);
-  export const Donut : Model<DonutInterface> = mongoose.model('Donut', donutSchema);
-  export const Drone : Model<DroneInterface> = mongoose.model('Drone', droneSchema);
-  export const Order : Model<OrderInterface> = mongoose.model('Order', orderSchema);
+  export const CustomerModel : Model<CustomerInterface> = mongoose.model('Customer', customerSchema);
+  export const DonutModel : Model<DonutInterface> = mongoose.model('Donut', donutSchema);
+  export const DroneModel : Model<DroneInterface> = mongoose.model('Drone', droneSchema);
+  export const OrderModel : Model<OrderInterface> = mongoose.model('Order', orderSchema);
