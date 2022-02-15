@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import DonutAvailability from './components/DonutAvailability'
 import OrderStatus from './components/OrderStatus'
 import NavbarScroller from './components/NavbarScroller';
+import DonutAvailabilityItem from './components/DonutAvailabilityItem';
+import LoadingDroneInstructions from './components/LoadingDroneInstructions';
 
 
 //navigation ordering for the navbar
@@ -23,9 +25,9 @@ function App() {
   const { brand, links } = navigation;
   return (
     <div className="App">
-      <NavbarScroller brand={brand} links={links} />
       <header className="App-header">
-        <OrderStatus/>
+        <NavbarScroller brand={brand} links={links} />
+        <LoadingDroneInstructions/>
       </header>
     </div>
   );
