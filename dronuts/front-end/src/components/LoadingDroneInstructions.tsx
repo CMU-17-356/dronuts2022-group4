@@ -35,7 +35,10 @@ function LoadingDroneInstructions() {
     <div className='DonutApp'>
       <Grid.Container gap={1}>
           <Grid style={{position:'absolute', bottom:'2vh'}}>
-            <Button auto type="success" style={{width:'100%', marginLeft: '30vw'}}>Order Queue</Button>
+            <Button auto type="success" style={{width:'100%', marginLeft: '30vw'}}>Completed Order</Button>
+          </Grid>
+          <Grid style={{position:'absolute', bottom:'30vh'}}>
+            <Button auto type="success" style={{width:'100%', marginLeft: '30vw'}}>Completed Order</Button>
           </Grid>
       </Grid.Container>
       <Grid.Container gap={4} xs={30} direction='column'>
@@ -44,18 +47,18 @@ function LoadingDroneInstructions() {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Estimated Arrival Time</span></Text></Grid>
+                Loading Donuts Instructions</span></Text></Grid>
             <Grid height="0.5vh"></Grid>
             <Grid height="0.5vh" ><hr color='#999'/></Grid>
             <Grid height="0.5vh"></Grid>
-            <Grid height="4vh"><Text h2>Delivery details</Text></Grid>
-            <Grid height="4vh"><Text h4 style={{marginLeft:"5vw"}}>5XXX Beeler St, Pittsburgh, PA 15217</Text></Grid>
-            <Grid height="4vh"><Text h4 style={{marginLeft:"5vw"}}>Meet at Location</Text></Grid>
+            <Grid height="4vh"><Text h2>Load Order #12 to Drone #1</Text></Grid>
+            <Grid height="4vh"><Text h4 style={{marginLeft:"5vw"}}>2 Chocolate Donuts with Sprinkles</Text></Grid>
+            <Grid height="4vh"><Text h4 style={{marginLeft:"5vw"}}>1 Original Glazed Donut</Text></Grid>
             <Grid height="0.5vh"></Grid>
             <Grid height="0.5vh"></Grid>
-            <Grid height="2.5vh"><Text h2>Order details</Text></Grid>
-            <Grid height="2.5vh"><Text h4 style={{marginLeft:"42.5vw"}}>Chocolate Frosting Donut x 3</Text></Grid>
-            <Grid height="2.5vh"><Text h4 style={{marginLeft:"42.5vw"}}>Strawbery Frosting Donut x 5</Text></Grid>
+            <Grid height="2.5vh"><Text h2>Load Order #13 to Drone #2</Text></Grid>
+            <Grid height="2.5vh"><Text h4 style={{marginLeft:"5vw"}}>5 Original Glazed Donuts</Text></Grid>
+            <Grid height="2.5vh"><Text h4 style={{marginLeft:"5vw"}}>2 Chocolate Covered Donuts</Text></Grid>
             <Grid height="10vh"></Grid>
         </Grid.Container>
       {}
