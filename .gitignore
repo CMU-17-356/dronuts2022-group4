@@ -18,9 +18,9 @@
 !*.css
 !*.ts
 !*.tsx
-!*.js
 !*.json
 !*.txt
+!*.png
 !*.dockerignore
 !*.eslintignore
 !*.prettierignore

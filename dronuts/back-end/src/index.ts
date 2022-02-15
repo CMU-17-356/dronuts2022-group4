@@ -19,5 +19,5 @@ app.get('/donuts', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Todo-App listening on localhost:${port}`);
+    console.log(`Dronuts backend listening on localhost:${port}`);
 });
