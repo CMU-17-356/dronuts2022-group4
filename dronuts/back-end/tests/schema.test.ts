@@ -31,8 +31,6 @@ describe('Customer test', function () {
     });
 
     it('can be created correctly', async () => {
-        // expect that two assertions will be made
-        expect.assertions(6);
         // create new post model instance
         const customer: CustomerInterface = new CustomerModel();
         // set some test properties
@@ -79,8 +77,6 @@ describe('Donut test', function () {
     });
 
     it('can be created correctly', async () => {
-        // expect that two assertions will be made
-        expect.assertions(7);
         // create new post model instance
         const donut: DonutInterface = new DonutModel();
         // set some test properties
@@ -125,8 +121,6 @@ describe('Drone test', function () {
     });
 
     it('can be created correctly', async () => {
-        // expect that two assertions will be made
-        expect.assertions(5);
         // create new post model instance
         const drone: DroneInterface = new DroneModel();
         // set some test properties
@@ -156,38 +150,36 @@ describe('Drone test', function () {
 describe('Order test', function () {
     it('should take on assigned values', () => {
         const m = new OrderModel();
-        const cust = new CustomerModel({id:1, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
+        const customer = new CustomerModel({id:1, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
         const donut1 = new DonutModel({id:1, name:'Chocolate frosting donut', price:2.99});
         const donut2 = new DonutModel({id:2, name:'Strawberry frosting donut', price:4.99});
         m.id = 6;
-        m.customer = cust._id;
+        m.customer = customer._id;
         m.address = '5000 Forbes Ave';
         m.status = 'Waiting For Pickup';
         m.purchase_date = new Date('2022-02-14');
         m.items = [donut1._id, donut2._id];
         expect(m.id).toEqual(6);
-        expect(m.customer).toEqual(1);
+        expect(m.customer).toEqual(customer._id);
         expect(m.address).toEqual('5000 Forbes Ave');
         expect(m.status).toEqual('Waiting For Pickup');
         expect(m.purchase_date).toEqual(new Date('2022-02-14'));
-        expect(m.items).toEqual([1, 2]);
+        expect(m.items).toEqual([donut1._id, donut2._id]);
     });
 
     it('can be created correctly', async () => {
-        // expect that two assertions will be made
-        expect.assertions(7);
         // create new post model instance
         const order: OrderInterface = new OrderModel();
         // set some test properties
         const cust = new CustomerModel({id:3, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
-        const donut1 = new DonutModel({id:5, name:'Chocolate frosting donut', price:2.99});
-        const donut2 = new DonutModel({id:9, name:'Strawberry frosting donut', price:4.99});
+        const d1 = new DonutModel({id:5, name:'Chocolate frosting donut', price:2.99});
+        const d2 = new DonutModel({id:9, name:'Strawberry frosting donut', price:4.99});
         order.id = 8;
         order.customer = cust._id;
         order.address = '5001 Forbes Ave';
         order.status = 'Drone Heading Towards Store';
         order.purchase_date = new Date('2022-02-15');
-        order.items = [donut1._id, donut2._id];
+        order.items = [d1._id, d2._id];
         // save test post to in-memory db
         await order.save();
         // find inserted post by title
@@ -199,11 +191,11 @@ describe('Order test', function () {
         expect(orderInDb).toBeDefined();
         if (orderInDb) {
             expect(orderInDb.id).toEqual(8);
-            expect(orderInDb.customer).toEqual(3);
+            expect(orderInDb.customer).toEqual(cust._id);
             expect(orderInDb.address).toEqual('5001 Forbes Ave');
             expect(orderInDb.status).toEqual('Drone Heading Towards Store');
             expect(orderInDb.purchase_date).toEqual(new Date('2022-02-15'));
-            expect(orderInDb.items).toEqual([5, 9]);
+            expect(orderInDb.items).toEqual([d1._id, d2._id]);
         }
     });  
 });

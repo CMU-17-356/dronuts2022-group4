@@ -16,7 +16,7 @@ const customerSchema = new Schema({
         unique: true,
         minLength: 10,
         maxlength: 12,
-        match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Please fill a valid phone number']
+        match: [/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Please fill a valid phone number']
     },
     email: {
         type: String,
@@ -44,7 +44,7 @@ const droneSchema = new Schema({
 const orderSchema = new Schema({
     id: { type: Number, required: true },
     customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
-    address: { type: Number, required: true },
+    address: { type: String, required: true },
     status: { type: String,
         required: true,
         enum: ['Drone Heading Towards Store',
