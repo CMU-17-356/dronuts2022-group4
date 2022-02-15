@@ -1,5 +1,4 @@
 import * as React from 'react'
-import styled from 'styled-components';
 
 const NavbarScroller = (props: {
   brand: { name: string; to: string },
