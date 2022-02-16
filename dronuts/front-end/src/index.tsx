@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/* Pages */
+import App from './App';
+import DonutStore from './components/DonutStore';
+import DroneStatus from './components/DroneStatus';
+import DonutAvailability from './components/DonutAvailability';
+import LoadOrders from './components/LoadOrders';
+import OrderStatus from './components/OrderStatus';
+import PurchasesList from './components/PurchasesList';
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <Routes>
+        <Route path='/' element={<App />} />
+        <Route path='/store' element={<DonutStore />} />
+        <Route path='/drones' element={<DroneStatus />} />
+        <Route path='/adminstore' element={<DonutAvailability />} />
+        <Route path='/loadinstructions' element={<LoadOrders />} />
+        <Route path='/orderstatus' element={<OrderStatus />} />
+        <Route path='/storeorderhistory' element={<PurchasesList />} />
+      </Routes>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
