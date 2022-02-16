@@ -12,6 +12,7 @@ import DonutAvailability from './components/DonutAvailability';
 import LoadOrders from './components/LoadOrders';
 import OrderStatus from './components/OrderStatus';
 import PurchasesList from './components/PurchasesList';
+import EmployeeNotificationSystem from './components/EmployeeNotificationSystem';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path='/loadinstructions' element={<LoadOrders />} />
         <Route path='/orderstatus' element={<OrderStatus />} />
         <Route path='/storeorderhistory' element={<PurchasesList />} />
+        <Route path='/empnotsys' element={<EmployeeNotificationSystem />} />
       </Routes>
     </React.StrictMode>
   </BrowserRouter>,

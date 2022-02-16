@@ -13,7 +13,8 @@ const navigation = {
     { name: 'Drones', to: '/drones' },
     { name: 'Loading Instructions', to: '/loadinstructions' },
     { name: 'Order Status', to: '/orderstatus' },
-    { name: 'Store Order History', to: '/storeorderhistory' }
+    { name: 'Store Order History', to: '/storeorderhistory' },
+    { name: 'Employee Notification System', to: '/empnotsys' }
   ]
 };
 
