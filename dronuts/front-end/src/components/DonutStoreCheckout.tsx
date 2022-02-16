@@ -1,25 +1,34 @@
 /* DonutStoreCheckout.tsx */
 
 // Libraries
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button, Card, Input, Page, Text } from '@geist-ui/react'
 
 // Local
 import type { Donut } from './DonutStoreItem'
 
 
-interface DonutStoreCheckoutProps {
-  donuts: Array<[Donut, number]>;
-}
-
-function DonutStoreCheckout(props: DonutStoreCheckoutProps) {
-  let { donuts } = props;
+function DonutStoreCheckout() {
+  let [donuts, setDonuts] = useState<Array<[Donut, number]>>([]);
   let [customerName, setCustomerName] = useState('');
   let [address, setAddress] = useState('');
   let [cardName, setCardName] = useState('');
   let [cardNum, setCardNum] = useState('');
   let [cardExpDate, setCardExpDate] = useState('');
   let [cardSecCode, setCardSecCode] = useState('');
+
+  async function fetchCart() {
+    try {
+      const response = await fetch('/cart').then((res) => (res.json()));
+      setDonuts(response);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
 
   let result = (
     <Page>

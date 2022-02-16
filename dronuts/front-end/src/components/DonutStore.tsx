@@ -3,6 +3,7 @@
 // Libraries
 import { useEffect, useState } from 'react';
 import { Button, Grid, Page } from '@geist-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 // Local
 import DonutStoreItem from './DonutStoreItem';
@@ -30,6 +31,12 @@ function DonutStore(props: DonutStoreProps) {
     fetchDonuts();
   }, []);
 
+  const navigate = useNavigate();
+
+  function navigateCheckout() {
+    navigate('/checkout');
+  }
+
   let result = (
     <Page>
       <Grid.Container gap={2} justify='center'>
@@ -41,7 +48,7 @@ function DonutStore(props: DonutStoreProps) {
           ))
         }
       </Grid.Container>
-      <Button>Checkout</Button>
+      <Button onClick={navigateCheckout}>Checkout</Button>
     </Page>
   );
   return result;
