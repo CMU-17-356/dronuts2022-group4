@@ -1,22 +1,19 @@
 import React from 'react';
 // import logo from './logo.svg';
-// import './App.css';
-// import DonutAvailability from './components/DonutAvailability'
-// import OrderStatus from './components/OrderStatus'
+import './App.css';
 import NavbarScroller from './components/NavbarScroller'
-// import DonutAvailabilityItem from './components/DonutAvailabilityItem'
-// import LoadingDroneInstructions from './components/LoadOrders'
-import LoadOrders from './components/LoadOrders';
 
 
 //navigation ordering for the navbar
 const navigation = {
-  brand: { name: 'NavScroller', to: '/' },
+  brand: { name: 'Home', to: '/' },
   links: [
-    { name: 'Donut Item Availability', to: './components/DonutAvailabilityItem' },
-    { name: 'Donut Availability', to: './components/DonutAvailability' },
-    { name: 'OrderStatus', to: './components/OrderStatus' },
-    { name: 'Loading Instructions', to: './components/LoadingDroneInstructions' }
+    { name: 'Store', to: '/store' },
+    { name: 'Admin Store', to: '/adminstore' },
+    { name: 'Drones', to: '/drones' },
+    { name: 'Loading Instructions', to: '/loadinstructions' },
+    { name: 'Order Status', to: '/orderstatus' },
+    { name: 'Store Order History', to: '/storeorderhistory' }
   ]
 };
 
@@ -28,7 +25,6 @@ function App() {
     <div className="App">
       <header className="App-header">
         <NavbarScroller brand={brand} links={links} />
-        <LoadOrders/>
       </header>
     </div>
   );
