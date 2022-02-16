@@ -4,7 +4,7 @@
 // function DonutAvailabilityItem() {
 //     const [donut_name, setDonutName] = useState("Chocolate Frosting");
 //     const [isActive, setActive] = useState(true);
-     
+
 //     return (
 //         <div className='App'>
 //           <Text h1>Todo App</Text>
@@ -30,7 +30,7 @@
 //ReactDOM.render(<Hello />, document.getElementById('root'));
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // import components
 import { Card, Tag, Text } from '@geist-ui/react';
@@ -63,7 +63,7 @@ const DonutAvailabilityItem = (props: DonutItemProps) => {
   }
 
   return (
-    <a onClick={clickedCard}><Card
+    <button style={{backgroundColor: 'transparent', border: 0}} onClick={clickedCard}><Card
       hoverable
       shadow
       style={{ width: '25vw', backgroundColor: cardColor, alignItems:'center'}}
@@ -75,7 +75,7 @@ const DonutAvailabilityItem = (props: DonutItemProps) => {
         <Text p>URL: {donut.img_url}</Text>
         <Tag>ID: {donut.id}</Tag>
       </Card.Footer>
-    </Card></a>
+    </Card></button>
   );
 };
 

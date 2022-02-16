@@ -10,7 +10,7 @@ import type { Donut } from './DonutAvailabilityItem';
 
 function DonutAvailability() {
   const [donutList, setDonutList] = useState<Array<Donut>>([]);
-  const [showCompleted, setShowCompleted] = useState(false);
+  // const [showCompleted, setShowCompleted] = useState(false);
 
   // fetching the async/await way
   async function fetchDonuts() {
@@ -106,7 +106,6 @@ function DonutAvailability() {
                   <DonutAvailabilityItem donut={donut} />
                 </Grid>
               );
-            return null;
             })
           : null}
       </Grid.Container>

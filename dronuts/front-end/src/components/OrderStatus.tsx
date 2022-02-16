@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 // component imports
 import { Grid, Text, Button } from '@geist-ui/react';
-import donut_img from '../straw-frosting-donut.png';
 import google_maps_credentials_file from '../google_maps_api_credentials.json';
 
 
@@ -20,7 +19,7 @@ const default_center = {lat: 40.44, lng: -79.99};
 const default_loc = {center: default_center, zoom: 11};
 
 // bring line down
-// Progress bar sections 
+// Progress bar sections
 // pictures next to location, dropoff indicator by for drone, donut images
 
 function OrderStatus() {
@@ -30,9 +29,9 @@ function OrderStatus() {
     return key;
   }
 
-  const [location, setLocation] = useState<Location>(default_loc);
-  const [api_key, setApiKey] = useState(getApiCredentials());
-  
+  const location = useState<Location>(default_loc)[0];
+  const api_key = useState(getApiCredentials())[0];
+
   return (
     <div className='DonutApp'>
       <Grid.Container gap={2}>
@@ -67,10 +66,10 @@ function OrderStatus() {
             <Grid height="10vh"></Grid>
             <Grid style={{position:'absolute', bottom:'2vh'}}><Button auto type="success" style={{width:'100%', marginLeft: '12.5vw'}}>Received Order</Button></Grid>
         </Grid.Container>
-        
+
       </Grid.Container>
-      
-      
+
+
       {/* <Grid.Container gap={2} justify='center'>
         {donutList
           ? donutList.map((donut) => {
