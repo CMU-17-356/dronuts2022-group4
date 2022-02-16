@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import './App.css';
 
 // component imports
@@ -6,7 +6,7 @@ import { Page, Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image } from 
 import drone_img from '../images/drone.png';
 
 function EmployeeNotificationSystem() {
-  const [orderList, setOrderList] = useState<Array<String>>(["o1", "o2", "o3", "o4", "o5"]);
+  const orderList = useState<Array<String>>(["o1", "o2", "o3", "o4", "o5"])[0];
 
   // TO DO: Set up data retrieval for pages
   // fetching the async/await way
@@ -71,7 +71,6 @@ function EmployeeNotificationSystem() {
                     <Spacer h={3} />
                 </div>
               );
-            return null;
             })
           : null}
       </Page>
@@ -121,7 +120,6 @@ function EmployeeNotificationSystem() {
                     <Spacer h={3} />
                 </div>
               );
-            return null;
             })
           : null}
       </Page>
