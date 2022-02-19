@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-// import './App.css';
 
 // component imports
-import { Grid, Text, Image, Button, Spacer } from '@geist-ui/react';
-import DonutAvailabilityItem from './DonutAvailabilityItem';
-import type { Donut } from './DonutAvailabilityItem';
+import { Image, Button, Spacer } from '@geist-ui/react';
 import dronutLogoImg from '../images/dronut.png';
-//import DisplayToggle from './components/DisplayToggle';
-
 
 function HomeApp() {
 
