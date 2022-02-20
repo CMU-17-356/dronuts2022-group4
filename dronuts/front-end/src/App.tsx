@@ -1,7 +1,9 @@
 import React from 'react';
 // import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import EmployeeNotificationSystem from './components/EmployeeNotificationSystem';
 import NavbarScroller from './components/NavbarScroller'
+
 
 
 //navigation ordering for the navbar
@@ -21,11 +23,10 @@ const navigation = {
 function App() {
 
   //containing the brand and link for each navigation on the navbar
-  const { brand, links } = navigation;
   return (
     <div className="App">
       <header className="App-header">
-        <NavbarScroller brand={brand} links={links} />
+        <EmployeeNotificationSystem />
       </header>
     </div>
   );
