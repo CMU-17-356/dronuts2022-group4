@@ -1,5 +1,7 @@
 import { Card, Divider, Grid, Image, Progress, Text } from '@geist-ui/react';
 import droneImg from '../images/drone.png';
+import NavBarScroller from './NavbarScroller';
+
 
 function DroneStatus() {
   const colors = {
@@ -9,6 +11,9 @@ function DroneStatus() {
   }
   
   return (
+    <div className='HomeApp'>
+    <NavBarScroller />
+
     <Grid.Container gap={2}>
       <Grid xs={24}><Text h2>Drone Status</Text></Grid>
       <Divider h={5} />
@@ -49,6 +54,7 @@ function DroneStatus() {
         </Card>
       </Grid>
     </Grid.Container>
+    </div>
   );
 }
 

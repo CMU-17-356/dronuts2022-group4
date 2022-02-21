@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 // component imports
 import { Grid, Text, Button } from '@geist-ui/react';
 import google_maps_credentials_file from '../google_maps_api_credentials.json';
+import NavBarScroller from './NavbarScroller';
 
 
 export interface Center {
@@ -34,6 +35,7 @@ function OrderStatus() {
 
   return (
     <div className='DonutApp'>
+      <NavBarScroller />
       <Grid.Container gap={2}>
         <Grid xs={12} >
             <div style={{ height: '100vh', width: '100%' }}>

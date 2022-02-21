@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBarScroller from './NavbarScroller';
 // import GoogleMapReact from 'google-map-react'
 
 // component imports
@@ -34,6 +35,7 @@ function LoadOrders() {
 
   return (
     <div className='DonutApp'>
+      <NavBarScroller />
       <Grid.Container gap={1}>
           <Grid style={{position:'absolute', bottom:'2vh'}}>
             <Button auto type="success" style={{width:'100%', marginLeft: '30vw'}}>Completed Order</Button>

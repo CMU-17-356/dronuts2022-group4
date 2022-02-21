@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 // import './App.css';
-
-// component imports
 import { Page, Text, Spacer } from '@geist-ui/react';
 import EmployeeNotificationSystemOrder from './EmployeeNotificationSystemOrder';
 import type { Order } from './EmployeeNotificationSystemOrder';
+
 
 function EmployeeNotificationSystem() {
   const [orderList, setOrderList] = useState<Array<Order>>([]);
@@ -26,6 +25,7 @@ function EmployeeNotificationSystem() {
 
   return (
     <div className='EmpNotSystem'>
+      <NavBarScroller />
       <Text h2 style={{marginLeft:'1em', marginBottom:'-1em'}}>Pending Orders</Text>
       <Page>
         {orderList

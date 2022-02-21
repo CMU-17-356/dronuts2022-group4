@@ -1,7 +1,10 @@
 import { Card, Divider, Grid, Text } from '@geist-ui/react';
+import NavBarScroller from './NavbarScroller';
 
 function PurchasesList() {
   return (
+    <div className = "DonutApp" >
+    <NavBarScroller />
     <Grid.Container gap={2}>
       <Grid xs={24}>
         <Text h2>Purchases</Text>
@@ -80,6 +83,8 @@ function PurchasesList() {
         </Card>
       </Grid>
     </Grid.Container>
+    </div>
+
   );
 }
 

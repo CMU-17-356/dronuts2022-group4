@@ -40,11 +40,13 @@ function DonutStoreItem(props: DonutStoreItemProps) {
       </ButtonGroup>
     );
   let result = (
+    <div className='HomeApp' >
     <Card style={{width: '30vw'}}>
       { donut.name }
       <img src={donut_img} alt={donut.name} width='75%' />
       { cart_button }
     </Card>
+    </div>
   );
   return result;
 }

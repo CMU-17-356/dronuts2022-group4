@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // Local
 import DonutStoreItem from './DonutStoreItem';
 import type { Donut } from './DonutStoreItem';
+import NavBarScroller from './NavbarScroller';
 
 
 interface DonutStoreProps {
@@ -38,6 +39,8 @@ function DonutStore(props: DonutStoreProps) {
   }
 
   let result = (
+    <div className='HomeApp'>
+    <NavBarScroller />
     <Page>
       <Grid.Container gap={2} justify='center'>
         {
@@ -50,6 +53,7 @@ function DonutStore(props: DonutStoreProps) {
       </Grid.Container>
       <Button onClick={navigateCheckout}>Checkout</Button>
     </Page>
+    </div>
   );
   return result;
 }
