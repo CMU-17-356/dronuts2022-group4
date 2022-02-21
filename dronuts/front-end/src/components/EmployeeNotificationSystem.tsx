@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import './App.css';
+import NavBarScroller from './NavbarScroller';
 import { Page, Text, Spacer } from '@geist-ui/react';
 import EmployeeNotificationSystemOrder from './EmployeeNotificationSystemOrder';
 import type { Order } from './EmployeeNotificationSystemOrder';
