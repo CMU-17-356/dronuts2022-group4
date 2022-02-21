@@ -24,6 +24,7 @@ const NavBarScroller = () => {
 
   return (
     <Tabs value={location.pathname} onChange={(route) => navigate(route, { replace: true })}>
+      <Tabs.Item label="Home" value = "/" /> 
       <Tabs.Item label="Store" value = "/store" /> 
       <Tabs.Item label="Admin Store" value = "/adminstore" />
       <Tabs.Item label="Loading Instructions" value = "/loadinstructions" />

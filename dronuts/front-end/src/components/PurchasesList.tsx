@@ -1,8 +1,10 @@
 import { Card, Divider, Grid, Text } from '@geist-ui/react';
+import NavBarScroller from './NavbarScroller';
 
 function PurchasesList() {
   return (
     <Grid.Container gap={2}>
+      <NavBarScroller />
       <Grid xs={24}>
         <Text h2>Purchases</Text>
         <Divider h={6} />

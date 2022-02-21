@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 // component imports
 import { Page, Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image } from '@geist-ui/react';
 import drone_img from '../images/drone.png';
+import NavBarScroller from './NavbarScroller';
 
 function EmployeeNotificationSystem() {
   const orderList = useState<Array<String>>(["o1", "o2", "o3", "o4", "o5"])[0];
@@ -26,6 +27,7 @@ function EmployeeNotificationSystem() {
 
   return (
     <div className='EmpNotSystem'>
+      <NavBarScroller />
       <Text h2 style={{marginLeft:'1em', marginBottom:'-1em'}}>Pending Orders</Text>
       <Page>
         {orderList
