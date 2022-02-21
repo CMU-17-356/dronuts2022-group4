@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import './App.css';
 
 // component imports
-import { Page, Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image, Button } from '@geist-ui/react';
-import drone_img from '../images/drone.png';
+import { Page, Text, Spacer } from '@geist-ui/react';
 import EmployeeNotificationSystemOrder from './EmployeeNotificationSystemOrder';
 import type { Order } from './EmployeeNotificationSystemOrder';
 
@@ -30,7 +29,7 @@ function EmployeeNotificationSystem() {
       <Text h2 style={{marginLeft:'1em', marginBottom:'-1em'}}>Pending Orders</Text>
       <Page>
         {orderList
-          ? orderList.filter(order => order.status == "pending").map((order) => {
+          ? orderList.filter(order => order.status === "pending").map((order) => {
               return (
                 <div>
                     <EmployeeNotificationSystemOrder order={order} />
@@ -44,7 +43,7 @@ function EmployeeNotificationSystem() {
       <Text h2 style={{marginLeft:'1em', marginBottom:'-1em'}}>Completed Orders</Text>
       <Page>
         {orderList
-          ? orderList.filter(order => order.status == "completed").map((order) => {
+          ? orderList.filter(order => order.status === "completed").map((order) => {
               return (
                 <div>
                     <EmployeeNotificationSystemOrder order={order} />

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import './App.css';
 
 // component imports
-import { Page, Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image, Button } from '@geist-ui/react';
+import { Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image, Button } from '@geist-ui/react';
 import drone_img from '../images/drone.png';
 
 export interface Order {
@@ -31,10 +31,10 @@ const EmployeeNotificationSystemOrder = (props: OrderItemProps) => {
             <Card.Content>
             <Grid.Container gap={2}>
                 {
-                    order.status == "pending" && <Grid><Badge type="error">Pending</Badge>  <Spacer h={.5} /></Grid>
+                    order.status === "pending" && <Grid><Badge type="error">Pending</Badge>  <Spacer h={.5} /></Grid>
                 }
                 {
-                    order.status == "completed" && <Grid><Badge type="success">Completed</Badge>  <Spacer h={.5} /></Grid>
+                    order.status === "completed" && <Grid><Badge type="success">Completed</Badge>  <Spacer h={.5} /></Grid>
                 }
                 {/* <Grid><Badge type="error">Pending</Badge>  <Spacer h={.5} /></Grid>
                 <Grid><Badge type="success">Completed</Badge>  <Spacer h={.5} /></Grid> */}
@@ -52,10 +52,10 @@ const EmployeeNotificationSystemOrder = (props: OrderItemProps) => {
                             return (
                                 <>
                                     {
-                                        order.status == "pending" && <Checkbox checked={false} type="default" scale={2.5}>{item}</Checkbox>
+                                        order.status === "pending" && <Checkbox checked={false} type="default" scale={2.5}>{item}</Checkbox>
                                     }
                                     {
-                                        order.status == "completed" && <Checkbox disabled checked={true} type="default" scale={2.5}>{item}</Checkbox>
+                                        order.status === "completed" && <Checkbox disabled checked={true} type="default" scale={2.5}>{item}</Checkbox>
                                     }
                                     {/* <Checkbox checked={false} type="default" scale={2.5}>{item}</Checkbox> */}
                                     <Spacer h={3} />
