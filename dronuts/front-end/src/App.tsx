@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import HomeApp from './components/HomePage';
-import NavBarScroller from './components/NavbarScroller'
 
 
 function App() {
