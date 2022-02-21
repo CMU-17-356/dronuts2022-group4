@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
 // component imports
 import { Image, Button, Spacer } from '@geist-ui/react';
 import dronutLogoImg from '../images/dronut.png';
