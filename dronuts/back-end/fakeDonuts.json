@@ -3,54 +3,63 @@
     "id": 1,
     "name": "Chocolate Frosting Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut with chocolate frosting"
   },
   {
     "id": 2,
     "name": "Strawberry Frosting Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut with strawberry frosting"
   },
   {
     "id": 3,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": false
+    "available": false,
+    "description": "Original donut"
   },
   {
     "id": 4,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut"
   },
   {
     "id": 5,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut"
   },
   {
     "id": 6,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut"
   },
   {
     "id": 7,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": false
+    "available": false,
+    "description": "Original donut"
   },
   {
     "id": 8,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut"
   },
   {
     "id": 9,
     "name": "Test Donut",
     "img_url": "Img URL here",
-    "available": true
+    "available": true,
+    "description": "Original donut"
   }
 ]
