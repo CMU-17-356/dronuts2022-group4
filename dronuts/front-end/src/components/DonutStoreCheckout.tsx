@@ -6,6 +6,7 @@ import { Button, Card, Input, Page, Text } from '@geist-ui/react'
 
 // Local
 import type { Donut } from './DonutStoreItem'
+import NavBarScroller from './NavbarScroller';
 
 
 function DonutStoreCheckout() {
@@ -31,6 +32,8 @@ function DonutStoreCheckout() {
   }, []);
 
   let result = (
+    <div className = "HomeApp">
+    <NavBarScroller/>
     <Page>
       <Card>
         <Text h3>Order Details</Text>
@@ -52,6 +55,8 @@ function DonutStoreCheckout() {
       </Card>
       <Button>Place Order</Button>
     </Page>
+    </div>
+
   );
   return result;
 }

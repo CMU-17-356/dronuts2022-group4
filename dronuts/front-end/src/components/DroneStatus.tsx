@@ -11,8 +11,10 @@ function DroneStatus() {
   }
   
   return (
+    <div className='HomeApp'>
+    <NavBarScroller />
+
     <Grid.Container gap={2}>
-      <NavBarScroller />
       <Grid xs={24}><Text h2>Drone Status</Text></Grid>
       <Divider h={5} />
       <Grid xs={6} justify="center">
@@ -52,6 +54,7 @@ function DroneStatus() {
         </Card>
       </Grid>
     </Grid.Container>
+    </div>
   );
 }
 

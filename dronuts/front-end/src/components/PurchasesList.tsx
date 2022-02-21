@@ -3,8 +3,9 @@ import NavBarScroller from './NavbarScroller';
 
 function PurchasesList() {
   return (
+    <div className = "DonutApp" >
+    <NavBarScroller />
     <Grid.Container gap={2}>
-      <NavBarScroller />
       <Grid xs={24}>
         <Text h2>Purchases</Text>
         <Divider h={6} />
@@ -82,6 +83,8 @@ function PurchasesList() {
         </Card>
       </Grid>
     </Grid.Container>
+    </div>
+
   );
 }
 

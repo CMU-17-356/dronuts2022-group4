@@ -39,8 +39,9 @@ function DonutStore(props: DonutStoreProps) {
   }
 
   let result = (
+    <div className='HomeApp'>
+    <NavBarScroller />
     <Page>
-      <NavBarScroller />
       <Grid.Container gap={2} justify='center'>
         {
           donuts.map((donut) => (
@@ -52,6 +53,7 @@ function DonutStore(props: DonutStoreProps) {
       </Grid.Container>
       <Button onClick={navigateCheckout}>Checkout</Button>
     </Page>
+    </div>
   );
   return result;
 }
