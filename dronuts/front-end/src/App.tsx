@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <NavbarScroller brand={brand} links={links} />
+        <NavbarScroller/>
         <LoadOrders/>
       </header>
     </div>

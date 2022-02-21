@@ -1,17 +1,22 @@
-import * as React from 'react'
+import React from 'react';
+import { Tabs } from '@geist-ui/react';
+import { useHistory, useLocation } from 'react-router-dom';
 
-const NavbarScroller = (props: {
-  brand: { name: string; to: string },
-  links: Array<{ name: string, to: string }>
-}) => {
-  const { brand, links } = props;
-  const NavLinks: any = () => links.map((link: { name: string, to: string }) => <li key={link.name}><a href={link.to}>{link.name}</a></li>);
+const Menu = () => {
+  const location = useLocation();
+  const history = useHistory();
+
   return (
-    <div>
-      <a href={brand.to}>{brand.name}</a>
-      <NavLinks />
-    </div>
-  )
+    <Tabs value={location.pathname} onChange={(route) => history.push(route)}>
+      <Tabs.Item label="Overview" value="/" />
+      <Tabs.Item label="Projects" value="/DonutAvailability.tsx" />
+      <Tabs.Item label="Integrations" value="/DonutStore.tsx" />
+      <Tabs.Item label="Activity" value="/activity" />
+      <Tabs.Item label="Domains" value="/domains" />
+      <Tabs.Item label="Usage" value="/usage" />
+      <Tabs.Item label="Settings" value="/settings" />
+    </Tabs>
+  );
 };
 
-export default NavbarScroller;
+export default Menu;
