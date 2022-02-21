@@ -1,8 +1,6 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import NavbarScroller from './components/NavbarScroller'
-
+import HomeApp from './components/HomePage';
 
 //navigation ordering for the navbar
 const navigation = {
@@ -19,13 +17,11 @@ const navigation = {
 };
 
 function App() {
-
   //containing the brand and link for each navigation on the navbar
-  const { brand, links } = navigation;
   return (
     <div className="App">
       <header className="App-header">
-        <NavbarScroller brand={brand} links={links} />
+        <HomeApp />
       </header>
     </div>
   );
