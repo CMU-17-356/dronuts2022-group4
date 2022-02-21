@@ -8,7 +8,6 @@ function App() {
   //containing the brand and link for each navigation on the navbar
   return (
     <div className="App">
-      <NavBarScroller/>
       <header className="App-header">
         <HomeApp />
       </header>
