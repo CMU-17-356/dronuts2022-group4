@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import components
-import { Card, Tag, Text } from '@geist-ui/react';
+import { Card, Text } from '@geist-ui/react';
 import donut_img from '../straw-frosting-donut.png';
 
 export interface Donut {
@@ -8,6 +8,7 @@ export interface Donut {
     name: string,
     img_url: string,
     available: boolean,
+    description: string
   }
 
 interface DonutItemProps {
@@ -16,16 +17,15 @@ interface DonutItemProps {
 
 const DonutAvailabilityItem = (props: DonutItemProps) => {
   let { donut } = props;
-  const pink = "#EF72AC";
-  const white = "#FFFFFF";
+  const gray = "#E1E1E1";
 
-  const [cardColor, setCardColor] = useState(donut.available ? pink : white);
+  const [cardOpacity, setCardOpacity] = useState(donut.available ? 1.0 : 0.50);
 
   function clickedCard (){
-    if(cardColor === pink){
-      setCardColor(white);
+    if(cardOpacity === 1.0){
+      setCardOpacity(0.50);
     } else {
-      setCardColor(pink);
+      setCardOpacity(1.0);
     }
   }
 
@@ -33,13 +33,13 @@ const DonutAvailabilityItem = (props: DonutItemProps) => {
     <button style={{backgroundColor: 'transparent', border: 0}} onClick={clickedCard}><Card
       hoverable
       shadow
-      style={{ width: '25vw', backgroundColor: cardColor, alignItems:'center'}}
+      style={{ width: '15vw', backgroundColor: gray, opacity: cardOpacity, alignItems:'center'}}
       type={'lite'}
     >
-      <Text h4 style={{ textAlign: 'center', paddingRight: '3vw', textTransform: 'uppercase' }}>{donut.name}</Text>
+      <Text h3 style={{ textAlign: 'center', paddingRight: '3vw', textTransform: 'uppercase', color: '#EF72AC' }}>{donut.name}</Text>
       <img src={donut_img} className="donut-logo" alt="donut" style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'75%', paddingRight: '3vw' }}/>
       <Card.Footer>
-        <Tag>ID: {donut.id}</Tag>
+        <Text>{donut.description}</Text>
       </Card.Footer>
     </Card></button>
   );
