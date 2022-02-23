@@ -4,19 +4,32 @@
 import { useEffect, useState } from 'react';
 import { Button, Grid, Page } from '@geist-ui/react';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from '../util/useLocalStorage';
+
+// Types
+import Donut from '../types/Donut';
+import DonutCart from '../types/DonutCart';
 
 // Local
 import DonutStoreItem from './DonutStoreItem';
-import type { Donut } from './DonutStoreItem';
 import NavBarScroller from './NavbarScroller';
 
 
-interface DonutStoreProps {
-}
-
-// TODO: Pass hook and keep track of cart quantities
-function DonutStore(props: DonutStoreProps) {
+function DonutStore() {
   let [donuts, setDonuts] = useState<Array<Donut>>([]);
+  let [cart, setCart] = useLocalStorage(
+    'cart',
+    { date: new Date(), donuts: {} } as DonutCart
+  );
+  /*
+  const current_date = new Date();
+  const cart_date = new Date(cart.date);
+  if (Math.abs(current_date.getTime() - cart_date.getTime()) / 36e5 >= 0) {
+    setCart(
+      { date: current_date, donuts: {} } as DonutCart
+    );
+  }
+  */
 
   async function fetchDonuts() {
     try {
@@ -33,9 +46,18 @@ function DonutStore(props: DonutStoreProps) {
   }, []);
 
   const navigate = useNavigate();
-
   function navigateCheckout() {
-    navigate('/checkout');
+    navigate('/checkout', { state: cart });
+  }
+
+  function updateCart(id: number, quantity: number) {
+    let new_donuts = cart.donuts;
+    if (quantity === 0) {
+      delete new_donuts[id];
+    } else {
+      new_donuts[id] = quantity;
+    }
+    setCart({ date: new Date(), donuts: new_donuts } as DonutCart);
   }
 
   let result = (
@@ -45,8 +67,14 @@ function DonutStore(props: DonutStoreProps) {
       <Grid.Container gap={2} justify='center'>
         {
           donuts.map((donut) => (
-            <Grid>
-              <DonutStoreItem donut={donut} initial_cart={0} />
+            <Grid key={donut.id}>
+              <DonutStoreItem
+                donut={donut}
+                initial_cart= {
+                  donut.id in cart.donuts ? cart.donuts[donut.id] : 0
+                }
+                updateCart = { updateCart }
+              />
             </Grid>
           ))
         }

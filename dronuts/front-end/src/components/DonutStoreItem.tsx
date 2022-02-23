@@ -1,42 +1,48 @@
 /* DonutStoreItem.tsx */
 
 // Libraries
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, ButtonGroup, Card } from '@geist-ui/react';
+
+// Types
+import Donut from '../types/Donut';
 
 // Assets
 import donut_img from '../straw-frosting-donut.png';
 
 
-export interface Donut {
-  id: number;
-  name: string;
-  img_url: string;
-  available: boolean;
-}
-
-// TODO: Add a hook for cart quantities in props
 interface DonutStoreItemProps {
   donut: Donut;
   initial_cart: number;
+  updateCart: (id: number, quantity: number) => void;
 }
 
 function DonutStoreItem(props: DonutStoreItemProps) {
-  let { donut, initial_cart} = props;
+  let { donut, initial_cart, updateCart } = props;
   const [cart, setCart] = useState(initial_cart);
+
+  const boundedCart = (quantity: number) => {
+    setCart(Math.max(0, Math.min(5, quantity)));
+  };
+
+  useEffect(() => {
+    updateCart(donut.id, cart);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart]);
+
   let cart_button = donut.available ?
     (
       <ButtonGroup>
-        <Button onClick={() => setCart(Math.max(0, cart - 1))}>-</Button>
+        <Button onClick={() => boundedCart(cart - 1)}>-</Button>
         <Button disabled>{ cart }</Button>
-        <Button onClick={() => setCart(Math.min(5, cart + 1))}>+</Button>
+        <Button onClick={() => boundedCart(cart + 1)}>+</Button>
      </ButtonGroup>
     ) :
     (
       <ButtonGroup disabled>
-        <Button onClick={() => setCart(Math.max(0, cart - 1))}>-</Button>
+        <Button onClick={() => boundedCart(cart - 1)}>-</Button>
         <Button disabled>{ cart }</Button>
-        <Button onClick={() => setCart(Math.min(5, cart + 1))}>+</Button>
+        <Button onClick={() => boundedCart(cart + 1)}>+</Button>
       </ButtonGroup>
     );
   let result = (

@@ -1,16 +1,24 @@
 /* DonutStoreCheckout.tsx */
 
 // Libraries
-import { useState, useEffect } from 'react'
-import { Button, Card, Input, Page, Text } from '@geist-ui/react'
+import { useState, useEffect } from 'react';
+import { Button, Card, Input, Page, Text } from '@geist-ui/react';
+import useLocalStorage from '../util/useLocalStorage';
+
+// Types
+import Donut from '../types/Donut';
+import DonutCart from '../types/DonutCart';
 
 // Local
-import type { Donut } from './DonutStoreItem'
 import NavBarScroller from './NavbarScroller';
 
 
 function DonutStoreCheckout() {
-  let [donuts, setDonuts] = useState<Array<[Donut, number]>>([]);
+  let cart = useLocalStorage(
+    'cart',
+    { date: new Date(), donuts: {} } as DonutCart
+  )[0].donuts;
+  let [donuts, setDonuts] = useState<Array<Donut>>([]);
   let [customerName, setCustomerName] = useState('');
   let [address, setAddress] = useState('');
   let [cardName, setCardName] = useState('');
@@ -18,9 +26,18 @@ function DonutStoreCheckout() {
   let [cardExpDate, setCardExpDate] = useState('');
   let [cardSecCode, setCardSecCode] = useState('');
 
-  async function fetchCart() {
+  let donutCart = donuts.filter((donut) => (
+    donut.id in cart
+  )).map((donut) => (
+    {
+      donut: donut,
+      quantity: cart[donut.id]
+    }
+  ));
+
+  async function fetchDonuts() {
     try {
-      const response = await fetch('/cart').then((res) => (res.json()));
+      const response = await fetch('/donuts').then((res) => (res.json()));
       setDonuts(response);
     } catch (e) {
       console.error(e);
@@ -28,7 +45,7 @@ function DonutStoreCheckout() {
   }
 
   useEffect(() => {
-    fetchCart();
+    fetchDonuts();
   }, []);
 
   let result = (
@@ -37,8 +54,8 @@ function DonutStoreCheckout() {
     <Page>
       <Card>
         <Text h3>Order Details</Text>
-        { donuts.map((donut) => (
-          <Text>{ donut[0].name } x { donut[1] }</Text>
+        { donutCart.map((donut) => (
+          <Text>{ donut.donut.name } x { donut.quantity }</Text>
         ))}
       </Card>
       <Card>
