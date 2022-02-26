@@ -1,7 +1,8 @@
 import * as testDB from './utility';
 
 import { CustomerModel, CustomerInterface, DonutModel, DonutInterface, 
-         DroneModel, DroneInterface, OrderModel, OrderInterface } from '../src/db/models';
+         DroneModel, DroneInterface, OrderModel, OrderInterface, 
+         UserInterface, UserModel } from '../src/db/models';
 
 beforeAll(async () => {
   await testDB.connect();
@@ -198,4 +199,51 @@ describe('Order test', function () {
             expect(orderInDb.items).toEqual([d1._id, d2._id]);
         }
     });  
+});
+
+describe('User test', function () {
+    it('should take on assigned values', () => {
+        const m = new UserModel();
+        m.id = 6;
+        m.first_name = 'Max';
+        m.last_name = 'Duna'
+        m.phone_number = '123-456-7890'
+        m.username = 'testusername'
+        m.password = 'password'
+        expect(m.id).toEqual(6);
+        expect(m.first_name).toEqual('Max');
+        expect(m.last_name).toEqual('Duna');
+        expect(m.phone_number).toEqual('123-456-7890');
+        expect(m.username).toEqual('testusername');
+        expect(m.password).toEqual('password');
+    });
+
+    it('can be created correctly', async () => {
+        // create new post model instance
+        const user: UserInterface = new UserModel();
+        // set some test properties
+        user.id = 6;
+        user.first_name = 'John';
+        user.last_name = 'Doe';
+        user.phone_number = '1234567890';
+        user.username = 'donutlover7';
+        user.password = 'ilovedonuts'
+        // save test post to in-memory db
+        await user.save();
+        // find inserted post by title
+        const userInDb: UserInterface | null = await UserModel.findOne({
+            id: 6,
+        }).exec();
+        console.log('User found from memory-db', userInDb);
+        // check that title is expected
+        expect(userInDb).toBeDefined();
+        if (userInDb) {
+            expect(userInDb.id).toEqual(6);
+            expect(userInDb.first_name).toEqual('John');
+            expect(userInDb.last_name).toEqual('Doe');
+            expect(userInDb.phone_number).toEqual('1234567890');
+            expect(userInDb.username).toEqual('donutlover7');
+            expect(userInDb.password).toEqual('ilovedonuts');
+        }
+    });
 });
