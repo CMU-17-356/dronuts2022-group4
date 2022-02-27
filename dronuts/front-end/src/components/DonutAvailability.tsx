@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 // import './App.css';
 
 // component imports
-import { Grid, Text } from '@geist-ui/react';
+import { Grid } from '@geist-ui/react';
 import DonutAvailabilityItem from './DonutAvailabilityItem';
-import type { Donut } from './DonutAvailabilityItem';
+import Donut from '../types/Donut';
 import NavBarScroller from './NavbarScroller';
 
 //import DisplayToggle from './components/DisplayToggle';
@@ -32,7 +32,6 @@ function DonutAvailability() {
   return (
     <div className='DonutApp'>
       <NavBarScroller />
-      <Text h1>Donut App</Text>
       <Grid.Container gap={2} justify='center'>
         {donutList
           ? donutList.map((donut) => {
