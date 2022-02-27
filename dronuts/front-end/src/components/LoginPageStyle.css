@@ -1,0 +1,25 @@
+input[type=text], select {
+    width: 95%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #EF72AC;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 95%;
+    background-color: #EF72AC;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #FFF;
+    border: 2px solid #EF72AC;
+    color: #EF72AC;
+
+  }
