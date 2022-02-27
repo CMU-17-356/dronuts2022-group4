@@ -1,6 +1,6 @@
 import * as testDB from './utility';
 
-import { CustomerModel, CustomerInterface, DonutModel, DonutInterface, 
+import { CustomerModel, CustomerInterface, DonutModel, DonutInterface,
          DroneModel, DroneInterface, OrderModel, OrderInterface } from '../src/db/models';
 
 beforeAll(async () => {
@@ -65,13 +65,13 @@ describe('Donut test', function () {
         m.id = 6;
         m.name = 'Chocolate Frosting Donut';
         m.price = 3.99;
-        m.desc = 'Donut with chocolate frosting';
+        m.description = 'Donut with chocolate frosting';
         m.img_url = 'fake_image_url.png';
         m.nutrition_info = ['Gluten Free', 'Kosher'];
         expect(m.id).toEqual(6);
         expect(m.name).toEqual('Chocolate Frosting Donut');
         expect(m.price).toEqual(3.99);
-        expect(m.desc).toEqual('Donut with chocolate frosting');
+        expect(m.description).toEqual('Donut with chocolate frosting');
         expect(m.img_url).toEqual('fake_image_url.png');
         expect(m.nutrition_info).toEqual(['Gluten Free', 'Kosher']);
     });
@@ -83,7 +83,7 @@ describe('Donut test', function () {
         donut.id = 3;
         donut.name = 'Strawberry Frosting Donut';
         donut.price = 2.99
-        donut.desc = 'Donut with strawbery frosting'
+        donut.description = 'Donut with strawbery frosting'
         donut.img_url = 'fake_image_url.png'
         donut.nutrition_info = ['Gluten Free', 'Kosher']
         // save test post to in-memory db
@@ -99,11 +99,11 @@ describe('Donut test', function () {
             expect(donutInDb.id).toEqual(3);
             expect(donutInDb.name).toEqual('Strawberry Frosting Donut');
             expect(donutInDb.price).toEqual(2.99);
-            expect(donutInDb.desc).toEqual('Donut with strawbery frosting');
+            expect(donutInDb.description).toEqual('Donut with strawbery frosting');
             expect(donutInDb.img_url).toEqual('fake_image_url.png');
             expect(donutInDb.nutrition_info).toEqual(['Gluten Free', 'Kosher']);
         }
-    });  
+    });
 });
 
 
@@ -158,13 +158,13 @@ describe('Order test', function () {
         m.address = '5000 Forbes Ave';
         m.status = 'Waiting For Pickup';
         m.purchase_date = new Date('2022-02-14');
-        m.items = [donut1._id, donut2._id];
+        m.items = [donut1.id, donut2.id]
         expect(m.id).toEqual(6);
         expect(m.customer).toEqual(customer._id);
         expect(m.address).toEqual('5000 Forbes Ave');
         expect(m.status).toEqual('Waiting For Pickup');
         expect(m.purchase_date).toEqual(new Date('2022-02-14'));
-        expect(m.items).toEqual([donut1._id, donut2._id]);
+        expect(m.items).toEqual([donut1.id, donut2.id]);
     });
 
     it('can be created correctly', async () => {
@@ -179,7 +179,7 @@ describe('Order test', function () {
         order.address = '5001 Forbes Ave';
         order.status = 'Drone Heading Towards Store';
         order.purchase_date = new Date('2022-02-15');
-        order.items = [d1._id, d2._id];
+        order.items = [d1.id, d2.id];
         // save test post to in-memory db
         await order.save();
         // find inserted post by title
@@ -195,7 +195,7 @@ describe('Order test', function () {
             expect(orderInDb.address).toEqual('5001 Forbes Ave');
             expect(orderInDb.status).toEqual('Drone Heading Towards Store');
             expect(orderInDb.purchase_date).toEqual(new Date('2022-02-15'));
-            expect(orderInDb.items).toEqual([d1._id, d2._id]);
+            expect(orderInDb.items).toEqual([d1.id, d2.id]);
         }
-    });  
+    });
 });

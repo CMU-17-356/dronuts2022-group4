@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Types } from 'mongoose'
+import mongoose, { Document, Model, Types } from 'mongoose';
 
 
 const { Schema } = mongoose;
@@ -13,7 +13,7 @@ export interface CustomerInterface extends Document {
 }
 
 const customerSchema = new Schema({
-  id: {type: Number, required: true},
+  id: {type: Number, unique: true, required: true},
   first_name: {type: String, required: true, trim: true},
   last_name: {type: String, required: true, trim: true},
   phone_number: {
@@ -37,21 +37,23 @@ const customerSchema = new Schema({
 
 // Donut
 export interface DonutInterface extends Document {
-  id: number
-  name: string
-  price: number
-  desc: string
-  img_url: string
-  nutrition_info: string[]
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  available: boolean;
+  img_url: string;
+  nutrition_info: string[];
 }
 
 const donutSchema = new Schema({
-  id: {type: Number, required: true},
-  name: {type: String, required: true, trim: true},
-  price: {type: Number, required: true, max: 10.00},
-  desc: {type: String, maxlength: 300},
-  img_url: {type: String},
-  nutrition_info: {type: [String], default: undefined}
+  id: { type: Number, unique: true, required: true },
+  name: { type: String, required: true, trim: true },
+  price: { type: Number, required: true, max: 10.00 },
+  description: { type: String, maxlength: 300 },
+  available: { type: Boolean, required: true, default: false },
+  img_url: { type: String },
+  nutrition_info: { type: [String], default: [] }
 });
 
 
@@ -72,16 +74,17 @@ const droneSchema = new Schema({
 
 // Order
 export interface OrderInterface extends Document {
-  id: number,
-  customer: Types.ObjectId,
-  address: string,
-  status: string,
-  purchase_date: Date,
-  items: Types.ObjectId[]
+  id: number;
+  customer: Types.ObjectId;
+  address: string;
+  status: string;
+  purchase_date: Date;
+  // items: Types.ObjectId[];
+  items: number[];
 }
 
 const orderSchema = new Schema({
-  id: { type: Number, required: true },
+  id: { type: Number, unique: true, required: true },
   customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
   address: { type: String, required: true },
   status: { type: String,
@@ -92,8 +95,9 @@ const orderSchema = new Schema({
                    'Waiting For Load',
                    'Completed']
           },
-  purchase_date: { type: Date, required: true, default:Date.now },
-  items: { type: [Schema.Types.ObjectId], ref: 'Donut', required: true }
+  purchase_date: { type: Date, required: true, default: Date.now },
+  // items: { type: [Schema.Types.ObjectId], ref: 'Donut', required: true }
+  items: { type: [Number], required: true }
 });
 
 export const CustomerModel : Model<CustomerInterface> = mongoose.model('Customer', customerSchema);
