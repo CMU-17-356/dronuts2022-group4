@@ -9,6 +9,7 @@ import {
 
 import fakeData from '../fakeDonuts.json';
 import fakeOrders from '../fakeOrders.json';
+import fakeUsers from '../fakeUsers.json';
 
 
 const resetDatabase = false;
@@ -103,4 +104,8 @@ app.post('/set-orders', (req:  Request<{}, {}, Array<OrderInterface>>, res: Resp
     // Insert/update failed
     res.status(400).send(false);
   });
+});
+
+app.get('/users', (req, res) => {
+    res.status(200).send(fakeUsers);
 });

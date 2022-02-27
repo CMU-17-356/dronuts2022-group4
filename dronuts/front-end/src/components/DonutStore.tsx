@@ -2,7 +2,7 @@
 
 // Libraries
 import { useEffect, useState } from 'react';
-import { Button, Grid, Page } from '@geist-ui/react';
+import { Button, Grid, Page, Spacer } from '@geist-ui/react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../util/useLocalStorage';
 
@@ -16,7 +16,7 @@ import NavBarScroller from './NavbarScroller';
 
 
 function DonutStore() {
-  let [donuts, setDonuts] = useState<Array<Donut>>([]);
+  let [donutList, setDonutList] = useState<Array<Donut>>([]);
   let [cart, setCart] = useLocalStorage(
     'cart',
     { date: new Date(), donuts: {} } as DonutCart
@@ -33,10 +33,9 @@ function DonutStore() {
 
   async function fetchDonuts() {
     try {
-      const donuts_response = await fetch('/donuts').then((res) => res.json());
-      setDonuts(donuts_response);
-    }
-    catch (e) {
+      const response = await fetch('/donuts').then((res) => (res.json()));
+      setDonutList(response);
+    } catch (e) {
       console.error(e);
     }
   }
@@ -64,7 +63,24 @@ function DonutStore() {
     <div className='HomeApp'>
     <NavBarScroller />
     <Page>
-      <Grid.Container gap={2} justify='center'>
+    <Grid.Container gap={2} justify='center'>
+        {donutList
+          ? donutList.map((donut) => {
+              return (
+                <Grid>
+                  <DonutStoreItem 
+                    donut={donut} 
+                    initial_cart= {
+                      donut.id in cart.donuts ? cart.donuts[donut.id] : 0
+                    }
+                    updateCart = { updateCart } 
+                  />
+                </Grid>
+              );
+            })
+          : null}
+      </Grid.Container>
+      {/* <Grid.Container gap={2} justify='center'>
         {
           donuts.map((donut) => (
             <Grid key={donut.id}>
@@ -78,8 +94,9 @@ function DonutStore() {
             </Grid>
           ))
         }
-      </Grid.Container>
-      <Button onClick={navigateCheckout}>Checkout</Button>
+      </Grid.Container> */}
+      <Spacer h={2} />
+      <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', bottom: 10, right: '45%' }} onClick={navigateCheckout}>Checkout</Button>
     </Page>
     </div>
   );
