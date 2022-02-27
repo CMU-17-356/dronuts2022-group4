@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 // import components
 import { Card, Text } from '@geist-ui/react';
 import donut_img from '../straw-frosting-donut.png';
-
-export interface Donut {
-    id: number,
-    name: string,
-    img_url: string,
-    available: boolean,
-    description: string
-  }
+import Donut from '../types/Donut';
 
 interface DonutItemProps {
     donut: Donut

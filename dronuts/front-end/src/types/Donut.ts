@@ -3,4 +3,5 @@ export default interface Donut {
   name: string;
   img_url: string;
   available: boolean;
+  description: string;
 };
