@@ -210,12 +210,14 @@ describe('User test', function () {
         m.phone_number = '123-456-7890'
         m.username = 'testusername'
         m.password = 'password'
+        m.access_level = 'employee'
         expect(m.id).toEqual(6);
         expect(m.first_name).toEqual('Max');
         expect(m.last_name).toEqual('Duna');
         expect(m.phone_number).toEqual('123-456-7890');
         expect(m.username).toEqual('testusername');
         expect(m.password).toEqual('password');
+        expect(m.access_level).toEqual('employee');
     });
 
     it('can be created correctly', async () => {
@@ -228,6 +230,7 @@ describe('User test', function () {
         user.phone_number = '1234567890';
         user.username = 'donutlover7';
         user.password = 'ilovedonuts'
+        user.access_level = 'customer'
         // save test post to in-memory db
         await user.save();
         // find inserted post by title
@@ -244,6 +247,7 @@ describe('User test', function () {
             expect(userInDb.phone_number).toEqual('1234567890');
             expect(userInDb.username).toEqual('donutlover7');
             expect(userInDb.password).toEqual('ilovedonuts');
+            expect(userInDb.access_level).toEqual('customer');
         }
     });
 });

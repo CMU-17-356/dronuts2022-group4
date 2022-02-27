@@ -103,6 +103,7 @@ import mongoose, { Document, Model, Types } from 'mongoose'
     phone_number: string
     username: string
     password: string
+    access_level: string
   }
 
   const userSchema = new Schema({
@@ -134,6 +135,11 @@ import mongoose, { Document, Model, Types } from 'mongoose'
       required: true,
       minlength: 5,
       maxlength: 100
+    },
+    access_level: {
+      type: String,
+      required: true,
+      enum: ['owner', 'employee', 'customer']
     }
   });
 
