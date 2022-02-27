@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "first_name": "Max",
+      "last_name": "Duna",
+      "phone_number": "1234567890",
+      "username": "admin",
+      "password": "password",
+      "access_level": "owner"
+    },
+    {
+        "id": 2,
+        "first_name": "John",
+        "last_name": "Nam",
+        "phone_number": "1234567890",
+        "username": "employee1",
+        "password": "password",
+        "access_level": "employee"
+    },
+    {
+        "id": 3,
+        "first_name": "Dennis",
+        "last_name": "Lo",
+        "phone_number": "1234567890",
+        "username": "customer1",
+        "password": "password",
+        "access_level": "customer"
+    },
+    {
+        "id": 4,
+        "first_name": "Aashai",
+        "last_name": "Avad",
+        "phone_number": "1234567890",
+        "username": "customer2",
+        "password": "password",
+        "access_level": "customer"
+    },
+    {
+        "id": 5,
+        "first_name": "John",
+        "last_name": "Doe",
+        "phone_number": "1234567890",
+        "username": "customer3",
+        "password": "password",
+        "access_level": "customer"
+    }
+]
+  

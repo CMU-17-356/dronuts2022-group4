@@ -7,6 +7,7 @@ const port = 3001;
 import fakeData from '../fakeDonuts.json';
 import fakeOrders from '../fakeOrders.json';
 import fakeCart from '../fakeCart.json';
+import fakeUsers from '../fakeUsers.json';
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,6 +29,10 @@ app.get('/orders', (req, res) => {
 
 app.get('/cart', (req, res) => {
   res.status(200).send(fakeCart);
+});
+
+app.get('/users', (req, res) => {
+    res.status(200).send(fakeUsers);
 });
 
 app.listen(port, () => {
