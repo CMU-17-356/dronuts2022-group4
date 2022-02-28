@@ -24,6 +24,7 @@ connectDb().then(async () => {
     await Promise.all([
       DonutModel.deleteMany({}),
       OrderModel.deleteMany({}),
+      UserModel.deleteMany({}),
     ]);
   }
   app.listen(port, () => {
