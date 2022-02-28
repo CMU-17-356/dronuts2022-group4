@@ -8,3 +8,14 @@ export default interface User {
   password: string;
   access_level: string;
 };
+
+export const EmptyUser: User = {
+  id: -1,
+  first_name: '',
+  last_name: '',
+  email: '',
+  phone_number: '',
+  username: '',
+  password: '',
+  access_level: '',
+};

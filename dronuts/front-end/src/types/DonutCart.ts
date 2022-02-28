@@ -5,3 +5,8 @@ export default interface DonutCart {
   date: Date;
   donuts: Record<number, number>; // Object that has keys of id: quantity
 };
+
+export const EmptyDonutCart: DonutCart = {
+  date: new Date(),
+  donuts: {},
+};

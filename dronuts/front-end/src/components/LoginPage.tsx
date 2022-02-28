@@ -5,7 +5,7 @@ import useLocalStorage from '../util/useLocalStorage';
 // component imports
 import { Text, Image, Spacer, Card, Divider, Button } from '@geist-ui/react';
 
-import User from '../types/User';
+import User, { EmptyUser } from '../types/User';
 
 import dronutLogoImg from '../images/dronut.png';
 import './LoginPageStyle.css'
@@ -17,16 +17,8 @@ function LoginPage() {
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [userList, setUserList] = useState<Array<User>>([]);
 
-  const [currentUser, setCurrentUser] = useLocalStorage('user', {
-    id: -1,
-    first_name: '',
-    last_name: '',
-    email: '',
-    phone_number: '',
-    username: '',
-    password: '',
-    access_level: '',
-  } as User);
+  // TODO: Skip login if already logged in
+  const setCurrentUser = useLocalStorage('user', EmptyUser)[1];
 
   const navigate = useNavigate();
 
