@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // component imports
-import { Text, Image, Spacer, Card, Divider, Button } from '@geist-ui/react';
-import dronutLogoImg from '../images/dronut.png';
+import { Text, Spacer, Card, Divider, Button } from '@geist-ui/react';
 import './LoginPageStyle.css'
-
-interface User {
-    id: number,
-    first_name: string,
-    last_name: string,
-    phone_number: string,
-    username: string,
-    password: string,
-    access_level: string
-}
 
 function AddDonutForm() {
   const [enteredDonutName, setDonutName] = useState<string>('');
@@ -21,9 +10,7 @@ function AddDonutForm() {
   const [enteredURL, setURL] = useState<string>('');
   const [enteredPrice, setPrice] = useState<string>('');
   const [enteredNutritionInfo, setNutritionInfo] = useState<string>('');
-  const [userList, setUserList] = useState<Array<User>>([]);
   
-
   const navigate = useNavigate();
 
   function navigateAdminStore() {
