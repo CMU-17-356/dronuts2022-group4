@@ -2,7 +2,14 @@
 
 // Libraries
 import { useState, useEffect } from 'react';
-import { Button, Card, Input, Page, Text } from '@geist-ui/react';
+import {
+  Button,
+  Card,
+  Divider,
+  Input,
+  Page,
+  Text
+} from '@geist-ui/react';
 import useLocalStorage from '../util/useLocalStorage';
 
 // Types
@@ -48,6 +55,10 @@ function DonutStoreCheckout() {
     fetchDonuts();
   }, []);
 
+  let cartTotalPrice = donutCart
+    .map(d => d.donut.price * d.quantity)
+    .reduce((p, c) =>  p + c, 0.00);
+
   let result = (
     <div className = "HomeApp">
     <NavBarScroller/>
@@ -55,8 +66,10 @@ function DonutStoreCheckout() {
       <Card>
         <Text h3>Order Details</Text>
         { donutCart.map((donut) => (
-          <Text>{ donut.donut.name } x { donut.quantity }</Text>
+          <Text>{ donut.donut.name } <em>(${ donut.donut.price })</em> x { donut.quantity }</Text>
         ))}
+        <Divider />
+        Total: <b>${ cartTotalPrice }</b>
       </Card>
       <Card>
         <Text h3>Delivery Details</Text>

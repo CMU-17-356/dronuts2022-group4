@@ -5,15 +5,8 @@ import { Text, Image, Spacer, Card, Divider, Button } from '@geist-ui/react';
 import dronutLogoImg from '../images/dronut.png';
 import './LoginPageStyle.css'
 
-interface User {
-    id: number,
-    first_name: string,
-    last_name: string,
-    phone_number: string,
-    username: string,
-    password: string,
-    access_level: string
-}
+import User from '../types/User';
+
 
 function LoginPage() {
   const [enteredUsername, setEnteredUsername] = useState<string>('');
@@ -54,7 +47,6 @@ function LoginPage() {
     alert('Incorrect information entered');
     setEnteredUsername('');
     setEnteredPassword('');
-    
   }
 
   function handleSubmit() {
@@ -63,7 +55,7 @@ function LoginPage() {
         alert('No users found');
         resetEnteredInfo();
         return;
-    } 
+    }
     const user_password = users[0].password;
     const user_access_level = users[0].access_level;
     if (user_password === enteredPassword){
@@ -99,9 +91,12 @@ function LoginPage() {
     fetchUsers();
   }, []);
 
-  return ( 
+  return (
     <div className='HomeApp' >
-        <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', top: 10, left: 10 }} onClick={navigateHome}>Home</Button>
+      <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', top: 10, left: 10 }} onClick={navigateHome}>Home</Button>
+      <Spacer h={3} />
+      <Card width="50%" shadow style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '4em'}}>
+        <Image width="30%"  src={dronutLogoImg} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '1em'}}/>
         <Spacer h={3} />
         <Card width="50%" shadow style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '4em'}}>
             <Image width="30%"  src={dronutLogoImg} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '1em'}}/>
@@ -124,6 +119,7 @@ function LoginPage() {
                 <a href='/singup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
             </Card.Content>
         </Card>
+      </Card>
     </div>
   );
 }
