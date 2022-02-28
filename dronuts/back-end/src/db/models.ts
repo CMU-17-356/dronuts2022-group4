@@ -3,38 +3,6 @@ import mongoose, { Document, Model, Types } from 'mongoose';
 
 const { Schema } = mongoose;
 
-// Customer
-export interface CustomerInterface extends Document {
-  id: number
-  first_name: string
-  last_name: string
-  phone_number: string
-  email: string
-}
-
-const customerSchema = new Schema({
-  id: {type: Number, unique: true, required: true},
-  first_name: {type: String, required: true, trim: true},
-  last_name: {type: String, required: true, trim: true},
-  phone_number: {
-      type: String,
-      required: true,
-      unique: true,
-      minLength: 10,
-      maxlength: 12,
-      match: [/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Please fill a valid phone number']
-  },
-  email: {
-      type: String,
-      trim: true,
-      lowercase: true,
-      unique: true,
-      required: true,
-      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-  }
-});
-
-
 // Donut
 export interface DonutInterface extends Document {
   id: number;
@@ -75,7 +43,8 @@ const droneSchema = new Schema({
 // Order
 export interface OrderInterface extends Document {
   id: number;
-  customer: Types.ObjectId;
+  // customer: Types.ObjectId;
+  customer: number;
   address: string;
   status: string;
   purchase_date: Date;
@@ -85,7 +54,8 @@ export interface OrderInterface extends Document {
 
 const orderSchema = new Schema({
   id: { type: Number, unique: true, required: true },
-  customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: true },
+  // customer: { type: Types.ObjectId, ref: 'Customer', required: true },
+  customer: { type: Number, required: true },
   address: { type: String, required: true },
   status: { type: String,
             required: true,
@@ -102,21 +72,30 @@ const orderSchema = new Schema({
 
 // User
 export interface UserInterface extends Document {
-  id: number
-  first_name: string
-  last_name: string
-  phone_number: string
-  username: string
-  password: string
-  access_level: string
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  username: string;
+  password: string;
+  access_level: string;
 }
 
 const userSchema = new Schema({
-  id: {type: Number, required: true},
+  id: {type: Number, unique: true, required: true},
   first_name: {type: String, required: true, trim: true},
   last_name: {type: String, required: true, trim: true},
+  email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      unique: true,
+      required: true,
+      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+  },
   phone_number: {
-      type: String, 
+      type: String,
       required: true,
       unique: true,
       minLength: 10,
@@ -148,7 +127,6 @@ const userSchema = new Schema({
   }
 });
 
-export const CustomerModel : Model<CustomerInterface> = mongoose.model('Customer', customerSchema);
 export const DonutModel : Model<DonutInterface> = mongoose.model('Donut', donutSchema);
 export const DroneModel : Model<DroneInterface> = mongoose.model('Drone', droneSchema);
 export const OrderModel : Model<OrderInterface> = mongoose.model('Order', orderSchema);

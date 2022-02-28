@@ -1,8 +1,12 @@
 import * as testDB from './utility';
 
-import { CustomerModel, CustomerInterface, DonutModel, DonutInterface, 
-         DroneModel, DroneInterface, OrderModel, OrderInterface, 
-         UserInterface, UserModel } from '../src/db/models';
+import {
+  DonutModel, DonutInterface,
+  DroneModel, DroneInterface,
+  OrderModel, OrderInterface,
+  UserModel, UserInterface,
+} from '../src/db/models';
+
 
 beforeAll(async () => {
   await testDB.connect();
@@ -15,50 +19,6 @@ afterEach(async () => {
 afterAll(async () => {
   await testDB.closeDatabase();
 });
-
-describe('Customer test', function () {
-    it('should take on assigned values', () => {
-        const m = new CustomerModel();
-        m.id = 6;
-        m.first_name = 'Max';
-        m.last_name = 'Duna'
-        m.phone_number = '123-456-7890'
-        m.email = 'testemail@gmail.com'
-        expect(m.id).toEqual(6);
-        expect(m.first_name).toEqual('Max');
-        expect(m.last_name).toEqual('Duna');
-        expect(m.phone_number).toEqual('123-456-7890');
-        expect(m.email).toEqual('testemail@gmail.com');
-    });
-
-    it('can be created correctly', async () => {
-        // create new post model instance
-        const customer: CustomerInterface = new CustomerModel();
-        // set some test properties
-        customer.id = 6;
-        customer.first_name = 'John';
-        customer.last_name = 'Doe';
-        customer.phone_number = '1234567890';
-        customer.email = 'fakeemail@gmail.com';
-        // save test post to in-memory db
-        await customer.save();
-        // find inserted post by title
-        const customerInDb: CustomerInterface | null = await CustomerModel.findOne({
-        id: 6,
-        }).exec();
-        console.log('Customer found from memory-db', customerInDb);
-        // check that title is expected
-        expect(customerInDb).toBeDefined();
-        if (customerInDb) {
-            expect(customerInDb.id).toEqual(6);
-            expect(customerInDb.first_name).toEqual('John');
-            expect(customerInDb.last_name).toEqual('Doe');
-            expect(customerInDb.phone_number).toEqual('1234567890');
-            expect(customerInDb.email).toEqual('fakeemail@gmail.com');
-        }
-    });
-});
-
 
 describe('Donut test', function () {
     it('should take on assigned values', () => {
@@ -151,17 +111,17 @@ describe('Drone test', function () {
 describe('Order test', function () {
     it('should take on assigned values', () => {
         const m = new OrderModel();
-        const customer = new CustomerModel({id:1, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
+        const user = new UserModel({id:1, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
         const donut1 = new DonutModel({id:1, name:'Chocolate frosting donut', price:2.99});
         const donut2 = new DonutModel({id:2, name:'Strawberry frosting donut', price:4.99});
         m.id = 6;
-        m.customer = customer._id;
+        m.customer = user.id;
         m.address = '5000 Forbes Ave';
         m.status = 'Waiting For Pickup';
         m.purchase_date = new Date('2022-02-14');
         m.items = [donut1.id, donut2.id]
         expect(m.id).toEqual(6);
-        expect(m.customer).toEqual(customer._id);
+        expect(m.customer).toEqual(user.id);
         expect(m.address).toEqual('5000 Forbes Ave');
         expect(m.status).toEqual('Waiting For Pickup');
         expect(m.purchase_date).toEqual(new Date('2022-02-14'));
@@ -172,11 +132,11 @@ describe('Order test', function () {
         // create new post model instance
         const order: OrderInterface = new OrderModel();
         // set some test properties
-        const cust = new CustomerModel({id:3, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
+        const cust = new UserModel({id:3, first_name:"t", last_name:"a", phone_number:"1234567890", email:"fake@gmail.com"});
         const d1 = new DonutModel({id:5, name:'Chocolate frosting donut', price:2.99});
         const d2 = new DonutModel({id:9, name:'Strawberry frosting donut', price:4.99});
         order.id = 8;
-        order.customer = cust._id;
+        order.customer = cust.id;
         order.address = '5001 Forbes Ave';
         order.status = 'Drone Heading Towards Store';
         order.purchase_date = new Date('2022-02-15');
@@ -192,13 +152,13 @@ describe('Order test', function () {
         expect(orderInDb).toBeDefined();
         if (orderInDb) {
             expect(orderInDb.id).toEqual(8);
-            expect(orderInDb.customer).toEqual(cust._id);
+            expect(orderInDb.customer).toEqual(cust.id);
             expect(orderInDb.address).toEqual('5001 Forbes Ave');
             expect(orderInDb.status).toEqual('Drone Heading Towards Store');
             expect(orderInDb.purchase_date).toEqual(new Date('2022-02-15'));
             expect(orderInDb.items).toEqual([d1.id, d2.id]);
         }
-    });  
+    });
 });
 
 describe('User test', function () {
@@ -206,14 +166,16 @@ describe('User test', function () {
         const m = new UserModel();
         m.id = 6;
         m.first_name = 'Max';
-        m.last_name = 'Duna'
-        m.phone_number = '123-456-7890'
-        m.username = 'testusername'
-        m.password = 'password'
-        m.access_level = 'employee'
+        m.last_name = 'Duna';
+        m.email = 'testemail@gmail.com';
+        m.phone_number = '123-456-7890';
+        m.username = 'testusername';
+        m.password = 'password';
+        m.access_level = 'employee';
         expect(m.id).toEqual(6);
         expect(m.first_name).toEqual('Max');
         expect(m.last_name).toEqual('Duna');
+        expect(m.email).toEqual('testemail@gmail.com');
         expect(m.phone_number).toEqual('123-456-7890');
         expect(m.username).toEqual('testusername');
         expect(m.password).toEqual('password');
@@ -228,9 +190,10 @@ describe('User test', function () {
         user.first_name = 'John';
         user.last_name = 'Doe';
         user.phone_number = '1234567890';
+        user.email = 'fakeemail@gmail.com';
         user.username = 'donutlover7';
-        user.password = 'ilovedonuts'
-        user.access_level = 'customer'
+        user.password = 'ilovedonuts';
+        user.access_level = 'customer';
         // save test post to in-memory db
         await user.save();
         // find inserted post by title
@@ -244,6 +207,7 @@ describe('User test', function () {
             expect(userInDb.id).toEqual(6);
             expect(userInDb.first_name).toEqual('John');
             expect(userInDb.last_name).toEqual('Doe');
+            expect(userInDb.email).toEqual('fakeemail@gmail.com');
             expect(userInDb.phone_number).toEqual('1234567890');
             expect(userInDb.username).toEqual('donutlover7');
             expect(userInDb.password).toEqual('ilovedonuts');

@@ -4,11 +4,10 @@ import mongoose from 'mongoose';
 
 import {
   DonutModel, DonutInterface,
-  OrderModel, OrderInterface
+  OrderModel, OrderInterface,
+  UserModel, UserInterface,
 } from './db/models';
 
-import fakeData from '../fakeDonuts.json';
-import fakeOrders from '../fakeOrders.json';
 import fakeUsers from '../fakeUsers.json';
 
 
@@ -74,14 +73,14 @@ app.post('/set-donuts', (req: Request<{}, {}, Array<DonutInterface>>, res: Respo
 });
 
 app.get('/orders', (req: Request, res: Response) => {
-    OrderModel.find().lean().exec(function (err, donuts) {
+    OrderModel.find().lean().exec(function (err, orders) {
       if (err) {
         // Retrieving donuts failed
         res.status(400).send(false);
       }
       else {
         // Retrieving donuts succeeded
-        res.status(200).send(JSON.stringify(donuts));
+        res.status(200).send(JSON.stringify(orders));
       }
     });
 });
@@ -107,5 +106,42 @@ app.post('/set-orders', (req:  Request<{}, {}, Array<OrderInterface>>, res: Resp
 });
 
 app.get('/users', (req, res) => {
-    res.status(200).send(fakeUsers);
+    UserModel.find().lean().exec(function (err, users) {
+      if (err) {
+        // Retrieving donuts failed
+        res.status(400).send(false);
+      }
+      else {
+        // Retrieving donuts succeeded
+        res.status(200).send(JSON.stringify(users));
+      }
+    });
 });
+
+app.post('/set-users', (req: Request<{}, {}, Array<UserInterface>>, res: Response) => {
+  let users = req.body;
+  const bulkUsers = users.map(user => (
+    {
+      replaceOne: {
+        upsert: true,
+        filter: { id: user.id },
+        replacement: user
+      }
+    }
+  ));
+  UserModel.bulkWrite(bulkUsers).then(() => {
+    // Insert/update successful
+    res.status(200).send(true);
+  }).catch(() => {
+    // Insert/update failed
+    res.status(400).send(false);
+  });
+});
+
+/*
+export const CustomerModel : Model<CustomerInterface> = mongoose.model('Customer', customerSchema);
+export const DonutModel : Model<DonutInterface> = mongoose.model('Donut', donutSchema);
+export const DroneModel : Model<DroneInterface> = mongoose.model('Drone', droneSchema);
+export const OrderModel : Model<OrderInterface> = mongoose.model('Order', orderSchema);
+export const UserModel : Model<UserInterface> = mongoose.model('User', userSchema);
+*/
