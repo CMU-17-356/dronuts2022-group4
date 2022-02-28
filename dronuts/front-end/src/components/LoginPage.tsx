@@ -1,17 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from '../util/useLocalStorage';
+
 // component imports
 import { Text, Image, Spacer, Card, Divider, Button } from '@geist-ui/react';
+
+import User from '../types/User';
+
 import dronutLogoImg from '../images/dronut.png';
 import './LoginPageStyle.css'
 
-import User from '../types/User';
 
 
 function LoginPage() {
   const [enteredUsername, setEnteredUsername] = useState<string>('');
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [userList, setUserList] = useState<Array<User>>([]);
+
+  const [currentUser, setCurrentUser] = useLocalStorage('user', {
+    id: -1,
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone_number: '',
+    username: '',
+    password: '',
+    access_level: '',
+  } as User);
 
   const navigate = useNavigate();
 
@@ -30,15 +45,12 @@ function LoginPage() {
   function navigateENS() {
     navigate('/empnotsys');
   }
-
   function navigateHome() {
     navigate('/');
   }
-
   function handleUsernameChange(event : React.ChangeEvent<any>) {
     setEnteredUsername(event.target.value);
   }
-
   function handlePasswordChange(event : React.ChangeEvent<any>) {
     setEnteredPassword(event.target.value);
   }
@@ -59,6 +71,7 @@ function LoginPage() {
     const user_password = users[0].password;
     const user_access_level = users[0].access_level;
     if (user_password === enteredPassword){
+        setCurrentUser(users[0]);
         switch (user_access_level) {
             case 'owner':
                 navigateAdminStore();
@@ -93,10 +106,42 @@ function LoginPage() {
 
   return (
     <div className='HomeApp' >
-      <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', top: 10, left: 10 }} onClick={navigateHome}>Home</Button>
+      <Button
+        auto
+        scale={1.5}
+        type="success"
+        style={{
+          textTransform: 'uppercase',
+          fontWeight: 'bold',
+          position: 'absolute',
+          top: 10,
+          left: 10
+        }}
+        onClick={ navigateHome }
+      >Home</Button>
+
       <Spacer h={3} />
-      <Card width="50%" shadow style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '4em'}}>
-        <Image width="30%"  src={dronutLogoImg} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '1em'}}/>
+
+      <Card
+        width="50%"
+        shadow
+        style={{
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginTop: '4em'
+        }}
+      >
+        <Image
+          width="30%"
+          src={ dronutLogoImg }
+          style={{
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: '1em'
+          }}
+        />
         <Spacer h={3} />
         <Card width="50%" shadow style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '4em'}}>
             <Image width="30%"  src={dronutLogoImg} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '1em'}}/>
