@@ -80,7 +80,8 @@ function AddDonutForm() {
     const new_donut = [{"id": 1, 
                         "name": donut_name, 
                         "price": price, 
-                        "desc": desc, 
+                        "description": desc, 
+                        "available": true,
                         "img_url": url, 
                         "nutrition_info": nutrition_info
                       }]
