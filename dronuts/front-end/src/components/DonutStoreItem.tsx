@@ -30,9 +30,9 @@ function DonutStoreItem(props: DonutStoreItemProps) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
-  let cart_button = 
+  let cart_button =
     (
-      <ButtonGroup style={{marginLeft: '6em'}}>
+      <ButtonGroup style={{margin: 'auto'}}>
         <Button onClick={() => boundedCart(cart - 1)} style={{margin: 0}}>-</Button>
         <Button disabled style={{margin: '0'}}>{ cart }</Button>
         <Button onClick={() => boundedCart(cart + 1)} style={{margin: 0}}>+</Button>
