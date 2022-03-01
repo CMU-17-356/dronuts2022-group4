@@ -99,7 +99,7 @@ const userSchema = new Schema({
       required: true,
       unique: true,
       minLength: 10,
-      maxlength: 12,
+      maxlength: 17,
       match: [/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Please fill a valid phone number']
   },
   username: {
