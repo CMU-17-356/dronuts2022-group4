@@ -11,7 +11,7 @@ import {
 import fakeUsers from '../fakeUsers.json';
 
 
-const resetDatabase = false;
+const resetDatabase = true;
 
 const app = express();
 const port = 3001;

@@ -1,7 +1,9 @@
 export default interface Donut {
   id: number;
   name: string;
-  img_url: string;
-  available: boolean;
+  price: number;
   description: string;
+  available: boolean;
+  img_url: string;
+  nutrition_info: string[];
 };
