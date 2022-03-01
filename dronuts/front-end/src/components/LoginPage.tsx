@@ -22,8 +22,16 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
+  function navigateSignUp() {
+    navigate('/signup');
+  }
+
   function navigateAdminStore() {
       navigate('/adminstore');
+  }
+
+  function navigateStore() {
+    navigate('/store');
   }
 
   function navigateENS() {
@@ -42,7 +50,6 @@ function LoginPage() {
     setEnteredPassword(event.target.value);
   }
 
-
   function resetEnteredInfo () {
     alert('Incorrect information entered');
     setEnteredUsername('');
@@ -51,13 +58,17 @@ function LoginPage() {
   }
 
   function handleSubmit() {
+    console.log('handling submit');
     const users = userList.filter(u => u.username === enteredUsername);
     if (users.length === 0){
+        alert('No users found');
         resetEnteredInfo();
         return;
     } 
     const user_password = users[0].password;
+    console.log(user_password);
     const user_access_level = users[0].access_level;
+    console.log(user_access_level);
     if (user_password === enteredPassword){
         switch (user_access_level) {
             case 'owner':
@@ -67,9 +78,13 @@ function LoginPage() {
                 navigateENS();
                 return;
             default:
-                resetEnteredInfo();
+                navigateStore();
                 return;
         }
+    } else {
+      alert('Incorrect password');
+      resetEnteredInfo();
+      return;
     }
   }
 
@@ -109,6 +124,7 @@ function LoginPage() {
                     <Spacer h={2} />
                     <input type="submit" value="Submit" />
                 </form>
+                <a onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
             </Card.Content>
         </Card>
     </div>

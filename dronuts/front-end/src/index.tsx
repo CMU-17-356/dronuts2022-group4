@@ -16,6 +16,7 @@ import EmployeeNotificationSystem from './components/EmployeeNotificationSystem'
 import DonutStoreCheckout from './components/DonutStoreCheckout';
 import LoginPage from './components/LoginPage';
 import AddDonutForm from './components/AddDonutForm';
+import SignUpForm from './components/SignUpForm';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -32,6 +33,7 @@ ReactDOM.render(
         <Route path='/checkout' element={<DonutStoreCheckout />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/adddonut' element={<AddDonutForm />} />
+        <Route path='/signup' element={<SignUpForm />} />
       </Routes>
     </React.StrictMode>
   </BrowserRouter>,
