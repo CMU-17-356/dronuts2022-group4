@@ -58,7 +58,6 @@ function LoginPage() {
   }
 
   function handleSubmit() {
-    console.log('handling submit');
     const users = userList.filter(u => u.username === enteredUsername);
     if (users.length === 0){
         alert('No users found');
@@ -66,9 +65,7 @@ function LoginPage() {
         return;
     } 
     const user_password = users[0].password;
-    console.log(user_password);
     const user_access_level = users[0].access_level;
-    console.log(user_access_level);
     if (user_password === enteredPassword){
         switch (user_access_level) {
             case 'owner':
@@ -124,7 +121,7 @@ function LoginPage() {
                     <Spacer h={2} />
                     <input type="submit" value="Submit" />
                 </form>
-                <a onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
+                <a href='/singup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
             </Card.Content>
         </Card>
     </div>
