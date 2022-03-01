@@ -22,8 +22,16 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
+  function navigateSignUp() {
+    navigate('/signup');
+  }
+
   function navigateAdminStore() {
       navigate('/adminstore');
+  }
+
+  function navigateStore() {
+    navigate('/store');
   }
 
   function navigateENS() {
@@ -42,7 +50,6 @@ function LoginPage() {
     setEnteredPassword(event.target.value);
   }
 
-
   function resetEnteredInfo () {
     alert('Incorrect information entered');
     setEnteredUsername('');
@@ -53,6 +60,7 @@ function LoginPage() {
   function handleSubmit() {
     const users = userList.filter(u => u.username === enteredUsername);
     if (users.length === 0){
+        alert('No users found');
         resetEnteredInfo();
         return;
     } 
@@ -67,9 +75,13 @@ function LoginPage() {
                 navigateENS();
                 return;
             default:
-                resetEnteredInfo();
+                navigateStore();
                 return;
         }
+    } else {
+      alert('Incorrect password');
+      resetEnteredInfo();
+      return;
     }
   }
 
@@ -109,6 +121,7 @@ function LoginPage() {
                     <Spacer h={2} />
                     <input type="submit" value="Submit" />
                 </form>
+                <a href='/singup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
             </Card.Content>
         </Card>
     </div>
