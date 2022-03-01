@@ -1,4 +1,4 @@
-import { Card, Divider, Grid, Text } from '@geist-ui/react';
+import { Card, Grid, Text } from '@geist-ui/react';
 import NavBarScroller from './NavbarScroller';
 
 function PurchasesList() {
@@ -8,7 +8,6 @@ function PurchasesList() {
     <Grid.Container gap={2}>
       <Grid xs={24}>
         <Text h2>Purchases</Text>
-        <Divider h={6} />
       </Grid>
       <Grid xs={24} justify="center">
         <Card shadow width="90%">
@@ -28,7 +27,7 @@ function PurchasesList() {
           </Grid.Container>
         </Card>
       </Grid>
-      <Grid xs={24}>
+      <Grid xs={24} justify="center">
         <Card shadow width="90%">
           <Grid.Container gap={2}>
             <Grid xs={6}>
@@ -46,7 +45,7 @@ function PurchasesList() {
           </Grid.Container>
         </Card>
       </Grid>
-      <Grid xs={24}>
+      <Grid xs={24} justify="center">
         <Card shadow width="90%">
           <Grid.Container gap={2}>
             <Grid xs={6}>
@@ -64,7 +63,7 @@ function PurchasesList() {
           </Grid.Container>
         </Card>
       </Grid>
-      <Grid xs={24}>
+      <Grid xs={24} justify="center">
         <Card shadow width="90%">
           <Grid.Container gap={2}>
             <Grid xs={6}>
