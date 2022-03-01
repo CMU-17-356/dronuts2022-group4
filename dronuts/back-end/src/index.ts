@@ -43,6 +43,7 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/donuts', (req: Request, res: Response) => {
     DonutModel.find().lean().exec(function (err, donuts) {
       if (err) {
+        console.log(err);
         // Retrieving donuts failed
         res.status(400).send(false);
       }
@@ -67,7 +68,8 @@ app.post('/set-donuts', (req: Request<{}, {}, Array<DonutInterface>>, res: Respo
   DonutModel.bulkWrite(bulkDonuts).then(() => {
     // Insert/update successful
     res.status(200).send(true);
-  }).catch(() => {
+  }).catch((e) => {
+    console.log(e);
     // Insert/update failed
     res.status(400).send(false);
   });
@@ -76,6 +78,7 @@ app.post('/set-donuts', (req: Request<{}, {}, Array<DonutInterface>>, res: Respo
 app.get('/orders', (req: Request, res: Response) => {
     OrderModel.find().lean().exec(function (err, orders) {
       if (err) {
+        console.log(err);
         // Retrieving donuts failed
         res.status(400).send(false);
       }
@@ -100,7 +103,8 @@ app.post('/set-orders', (req:  Request<{}, {}, Array<OrderInterface>>, res: Resp
   OrderModel.bulkWrite(bulkOrders).then(() => {
     // Insert/update successful
     res.status(200).send(true);
-  }).catch(() => {
+  }).catch((e) => {
+    console.log(e);
     // Insert/update failed
     res.status(400).send(false);
   });
@@ -109,6 +113,7 @@ app.post('/set-orders', (req:  Request<{}, {}, Array<OrderInterface>>, res: Resp
 app.get('/users', (req, res) => {
     UserModel.find().lean().exec(function (err, users) {
       if (err) {
+        console.log(err);
         // Retrieving donuts failed
         res.status(400).send(false);
       }
@@ -133,16 +138,9 @@ app.post('/set-users', (req: Request<{}, {}, Array<UserInterface>>, res: Respons
   UserModel.bulkWrite(bulkUsers).then(() => {
     // Insert/update successful
     res.status(200).send(true);
-  }).catch(() => {
+  }).catch((e) => {
+    console.log(e);
     // Insert/update failed
     res.status(400).send(false);
   });
 });
-
-/*
-export const CustomerModel : Model<CustomerInterface> = mongoose.model('Customer', customerSchema);
-export const DonutModel : Model<DonutInterface> = mongoose.model('Donut', donutSchema);
-export const DroneModel : Model<DroneInterface> = mongoose.model('Drone', droneSchema);
-export const OrderModel : Model<OrderInterface> = mongoose.model('Order', orderSchema);
-export const UserModel : Model<UserInterface> = mongoose.model('User', userSchema);
-*/
