@@ -21,15 +21,6 @@ function DonutStore() {
     'cart',
     { date: new Date(), donuts: {} } as DonutCart
   );
-  /*
-  const current_date = new Date();
-  const cart_date = new Date(cart.date);
-  if (Math.abs(current_date.getTime() - cart_date.getTime()) / 36e5 >= 0) {
-    setCart(
-      { date: current_date, donuts: {} } as DonutCart
-    );
-  }
-  */
 
   async function fetchDonuts() {
     try {
@@ -65,7 +56,7 @@ function DonutStore() {
     <Page>
     <Grid.Container gap={2} justify='center'>
         {donutList
-          ? donutList.map((donut) => {
+          ? donutList.filter(donut => donut.available === true).map((donut) => {
               return (
                 <Grid>
                   <DonutStoreItem 

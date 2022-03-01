@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // component imports
 import { Text, Spacer, Card, Divider, Button } from '@geist-ui/react';
 import './LoginPageStyle.css'
+import Donut from '../types/Donut';
 
 function AddDonutForm() {
   const [enteredDonutName, setDonutName] = useState<string>('');
@@ -10,6 +11,8 @@ function AddDonutForm() {
   const [enteredURL, setURL] = useState<string>('');
   const [enteredPrice, setPrice] = useState<string>('');
   const [enteredNutritionInfo, setNutritionInfo] = useState<string>('');
+  const [donutID, setDonutID] = useState<number>(0);
+  const [submitted, setSubmitted] = useState<boolean>(false);
   
   const navigate = useNavigate();
 
@@ -37,7 +40,6 @@ function AddDonutForm() {
     setNutritionInfo(event.target.value);
   }
 
-
   function resetEnteredInfo () {
     alert('Incorrect information entered');
     setDonutName('');
@@ -46,6 +48,24 @@ function AddDonutForm() {
     setPrice('');
     setNutritionInfo('');
   }
+
+  async function getMaxID(){
+    try{
+      const response : Array<Donut> = await fetch('/donuts').then((res) => (res.json()));
+      var max_id = 0;
+      if(response.length > 0){
+        const ids = response.map((donut) => donut.id);
+        max_id = ids.reduce((prevId, newId, index)=>Math.max(prevId, newId), 0);
+      }
+      setDonutID(max_id + 1);
+    } catch (e){
+      console.error(e);
+    }
+  }
+
+  useEffect(() => {
+    getMaxID();
+  }, []);
 
   async function handleSubmit() {
     if(enteredDonutName === "" ||
@@ -59,36 +79,42 @@ function AddDonutForm() {
         return;
     }
 
-    const donut_name = enteredDonutName;
-    const desc = enteredDesc;
-    const url = '../straw-frosting-donut.png';
-    const price = Number(enteredPrice.replace("$", ""));
-    const nutrition_info = enteredNutritionInfo.split(",").map(info => info.trim());
-    const new_donut = [{"id": 1, 
-                        "name": donut_name, 
-                        "price": price, 
-                        "description": desc, 
-                        "available": true,
-                        "img_url": url, 
-                        "nutrition_info": nutrition_info
-                      }]
-
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(new_donut)
-    };
-
     try {
+        var id = donutID;
+        const donut_name = enteredDonutName;
+        const desc = enteredDesc;
+        const url = '../straw-frosting-donut.png';
+        const price = Number(enteredPrice.replace("$", ""));
+        const nutrition_info = enteredNutritionInfo.split(",").map(info => info.trim());
+        const new_donut = [{"id": id, 
+                            "name": donut_name, 
+                            "price": price, 
+                            "description": desc, 
+                            "available": true,
+                            "img_url": url, 
+                            "nutrition_info": nutrition_info
+                          }];
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(new_donut)
+        };
+
         await fetch('/set-donuts', requestOptions).then((res) => (res.json()));
-        alert('success');
-        navigateAdminStore();
       } catch (e) {
         console.error(e);
         resetEnteredInfo();
       }
-    // alert(donut_name + " " + price + " " + desc + " " + url + " " + nutrition_info.reduce((p, c, i) => (p + " " + c)));
+      setSubmitted(false);
   }
+
+  useEffect(() => {
+    if(submitted){
+      handleSubmit();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitted]);
 
   return ( 
     <div className='HomeApp' >
@@ -99,7 +125,7 @@ function AddDonutForm() {
             </Card.Content>
             <Divider h="1px" my={0} style={{color: '#FFF'}}/>
             <Card.Content>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={() => setSubmitted(true)}>
                     <Spacer h={0.5} />
                     <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Donut name</Text>
                     <input type="text" id="dname" name="donutname" placeholder="Donut name" value={enteredDonutName} onChange={handleDonutNameChange}></input>
