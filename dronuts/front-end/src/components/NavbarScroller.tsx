@@ -14,7 +14,6 @@ const NavBarScroller = () => {
       <Tabs.Item label="Home" value = "/" /> 
       <Tabs.Item label="Store" value = "/store" /> 
       <Tabs.Item label="Admin Store" value = "/adminstore" />
-      <Tabs.Item label="Loading Instructions" value = "/loadinstructions" />
       <Tabs.Item label="Order Status" value = "/orderstatus" />
       <Tabs.Item label="Store Order History" value = "/storeorderhistory" />
       <Tabs.Item label="Employee Notification System" value = "/empnotsys" />
