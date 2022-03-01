@@ -1,4 +1,4 @@
-import { Card, Divider, Grid, Text } from '@geist-ui/react';
+import { Card, Grid, Text } from '@geist-ui/react';
 import NavBarScroller from './NavbarScroller';
 
 function PurchasesList() {
