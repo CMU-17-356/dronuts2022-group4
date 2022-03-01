@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 // import './App.css';
 
 // component imports
-import { Grid } from '@geist-ui/react';
+import { Grid, Spacer, Button, Page } from '@geist-ui/react';
 import DonutAvailabilityItem from './DonutAvailabilityItem';
 import Donut from '../types/Donut';
 import NavBarScroller from './NavbarScroller';
+import { useNavigate } from 'react-router-dom';
 
 //import DisplayToggle from './components/DisplayToggle';
 
@@ -29,9 +30,15 @@ function DonutAvailability() {
     fetchDonuts();
   }, []);
 
+  const navigate = useNavigate();
+  function navigateAddDount() {
+    navigate('/adddonut');
+  }
+
   return (
     <div className='DonutApp'>
       <NavBarScroller />
+      <Page>
       <Grid.Container gap={2} justify='center'>
         {donutList
           ? donutList.map((donut) => {
@@ -43,6 +50,9 @@ function DonutAvailability() {
             })
           : null}
       </Grid.Container>
+      <Spacer h={2} />
+      <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', bottom: 10, right: '45%'}} onClick={navigateAddDount}>Add Donut</Button>
+      </Page>
     </div>
   );
 }
