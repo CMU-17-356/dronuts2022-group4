@@ -40,7 +40,6 @@ function AddDonutForm() {
     setNutritionInfo(event.target.value);
   }
 
-
   function resetEnteredInfo () {
     alert('Incorrect information entered');
     setDonutName('');
@@ -50,43 +49,25 @@ function AddDonutForm() {
     setNutritionInfo('');
   }
 
-  // async function getNewID() {
-  //   try {
-      
-  //   } catch (e) {
-  //     throw new Error('Error retrieving new id');
-  //   }
-  // }
-
   async function getMaxID(){
-    console.log("get max id call");
     try{
       const response : Array<Donut> = await fetch('/donuts').then((res) => (res.json()));
-      console.log(response);
-      // setDonutList(response);
-      // alert('list created: ' + donutList.length.toString());
       var max_id = 0;
       if(response.length > 0){
-        console.log('donut list > 0');
         const ids = response.map((donut) => donut.id);
         max_id = ids.reduce((prevId, newId, index)=>Math.max(prevId, newId), 0);
       }
-      console.log(max_id);
       setDonutID(max_id + 1);
     } catch (e){
       console.error(e);
     }
-    
   }
 
   useEffect(() => {
     getMaxID();
   }, []);
 
-  
-
   async function handleSubmit() {
-    console.log("running handle submit");
     if(enteredDonutName === "" ||
        enteredDesc === "" || 
        enteredURL === "" || 
@@ -126,13 +107,11 @@ function AddDonutForm() {
         resetEnteredInfo();
       }
       setSubmitted(false);
-    // alert(donut_name + " " + price + " " + desc + " " + url + " " + nutrition_info.reduce((p, c, i) => (p + " " + c)));
   }
 
   useEffect(() => {
     if(submitted){
       handleSubmit();
-      navigateAdminStore();
     }
   }, [submitted]);
 

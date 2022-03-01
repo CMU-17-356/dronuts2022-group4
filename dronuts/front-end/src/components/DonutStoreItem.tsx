@@ -30,20 +30,13 @@ function DonutStoreItem(props: DonutStoreItemProps) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
-  let cart_button = donut.available ?
+  let cart_button = 
     (
       <ButtonGroup style={{marginLeft: '6em'}}>
         <Button onClick={() => boundedCart(cart - 1)} style={{margin: 0}}>-</Button>
         <Button disabled style={{margin: '0'}}>{ cart }</Button>
         <Button onClick={() => boundedCart(cart + 1)} style={{margin: 0}}>+</Button>
      </ButtonGroup>
-    ) :
-    (
-      <ButtonGroup disabled style={{marginLeft: '6em'}}>
-        <Button onClick={() => boundedCart(cart - 1)} style={{margin: 0}}>-</Button>
-        <Button style={{margin: '0'}} disabled>{ cart }</Button>
-        <Button onClick={() => boundedCart(cart + 1)} style={{margin: 0}}>+</Button>
-      </ButtonGroup>
     );
 
   let result = (
@@ -57,15 +50,11 @@ function DonutStoreItem(props: DonutStoreItemProps) {
         <Text h3 style={{ textAlign: 'center', paddingRight: '3vw', textTransform: 'uppercase', color: '#EF72AC' }}>{donut.name}</Text>
         <img src={donut_img} className="donut-logo" alt="donut" style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width:'75%', paddingRight: '3vw' }}/>
         <Text h4 style={{ textAlign: 'center', paddingRight: '3vw', fontWeight: 'inherent' }}>{donut.description}</Text>
+        <Text h4 style={{ textAlign: 'center', paddingRight: '3vw', fontWeight: 'inherent' }}>${donut.price}</Text>
         <Card.Footer >
           { cart_button }
         </Card.Footer>
       </Card>
-      {/* <Card style={{width: '30vw'}}>
-        { donut.name }
-        <img src={donut_img} alt={donut.name} width='75%' />
-        { cart_button }
-      </Card> */}
     </div>
   );
   return result;
