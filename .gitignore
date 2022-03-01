@@ -26,10 +26,10 @@
 !*.eslintignore
 !*.prettierignore
 !*.prettierrc
-!*.tsbuildinfo
 
 
 # Blacklist (overrides Whitelist)
 **/node_modules/*
 **/dist/*
 dronuts/front-end/src/google_maps_api_credentials.json
+**/.vscode/*
