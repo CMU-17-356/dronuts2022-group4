@@ -113,6 +113,7 @@ function AddDonutForm() {
     if(submitted){
       handleSubmit();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
 
   return ( 

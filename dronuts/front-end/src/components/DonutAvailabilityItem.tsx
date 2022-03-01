@@ -51,6 +51,7 @@ const DonutAvailabilityItem = (props: DonutItemProps) => {
 
   useEffect(() => {
     setAvailabilityStatus();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, clickedCard]);
 
   return (
