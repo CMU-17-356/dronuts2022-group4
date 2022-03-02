@@ -43,7 +43,7 @@ function DonutStore() {
 
   const navigate = useNavigate();
   function navigateCheckout() {
-    navigate('/checkout', { state: cart });
+    navigate('/checkout');
   }
 
   function updateCart(id: number, quantity: number) {

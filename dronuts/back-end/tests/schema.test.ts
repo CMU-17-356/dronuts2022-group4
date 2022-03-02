@@ -119,13 +119,13 @@ describe('Order test', function () {
         m.address = '5000 Forbes Ave';
         m.status = 'Waiting For Pickup';
         m.purchase_date = new Date('2022-02-14');
-        m.items = [donut1.id, donut2.id]
+        m.items = [[donut1.id, 1], [donut2.id, 3]]
         expect(m.id).toEqual(6);
         expect(m.customer).toEqual(user.id);
         expect(m.address).toEqual('5000 Forbes Ave');
         expect(m.status).toEqual('Waiting For Pickup');
         expect(m.purchase_date).toEqual(new Date('2022-02-14'));
-        expect(m.items).toEqual([donut1.id, donut2.id]);
+        expect(m.items).toEqual([[donut1.id, 1], [donut2.id, 3]]);
     });
 
     it('can be created correctly', async () => {
@@ -140,7 +140,7 @@ describe('Order test', function () {
         order.address = '5001 Forbes Ave';
         order.status = 'Drone Heading Towards Store';
         order.purchase_date = new Date('2022-02-15');
-        order.items = [d1.id, d2.id];
+        order.items = [[d1.id, 1], [d2.id, 2]];
         // save test post to in-memory db
         await order.save();
         // find inserted post by title
@@ -156,7 +156,7 @@ describe('Order test', function () {
             expect(orderInDb.address).toEqual('5001 Forbes Ave');
             expect(orderInDb.status).toEqual('Drone Heading Towards Store');
             expect(orderInDb.purchase_date).toEqual(new Date('2022-02-15'));
-            expect(orderInDb.items).toEqual([d1.id, d2.id]);
+            expect(orderInDb.items).toEqual([[d1.id, 1], [d2.id, 2]]);
         }
     });
 });
