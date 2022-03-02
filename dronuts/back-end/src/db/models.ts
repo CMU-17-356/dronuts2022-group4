@@ -49,7 +49,7 @@ export interface OrderInterface extends Document {
   status: string;
   purchase_date: Date;
   // items: Types.ObjectId[];
-  items: number[];
+  items: number[][];
 }
 
 const orderSchema = new Schema({
@@ -59,7 +59,8 @@ const orderSchema = new Schema({
   address: { type: String, required: true },
   status: { type: String,
             required: true,
-            enum: ['Drone Heading Towards Store',
+            enum: ['Submitted',
+                   'Drone Heading Towards Store',
                    'Drone Heading Towards Destination',
                    'Waiting For Pickup',
                    'Waiting For Load',
@@ -67,7 +68,7 @@ const orderSchema = new Schema({
           },
   purchase_date: { type: Date, required: true, default: Date.now },
   // items: { type: [Schema.Types.ObjectId], ref: 'Donut', required: true }
-  items: { type: [Number], required: true }
+  items: { type: [[Number]], required: true }
 });
 
 // User

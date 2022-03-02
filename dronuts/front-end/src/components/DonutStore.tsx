@@ -8,7 +8,7 @@ import useLocalStorage from '../util/useLocalStorage';
 
 // Types
 import Donut from '../types/Donut';
-import DonutCart from '../types/DonutCart';
+import DonutCart, { EmptyDonutCart } from '../types/DonutCart';
 
 // Local
 import DonutStoreItem from './DonutStoreItem';
@@ -17,10 +17,16 @@ import NavBarScroller from './NavbarScroller';
 
 function DonutStore() {
   let [donutList, setDonutList] = useState<Array<Donut>>([]);
-  let [cart, setCart] = useLocalStorage(
-    'cart',
-    { date: new Date(), donuts: {} } as DonutCart
-  );
+  let [cart, setCart] = useLocalStorage('cart', EmptyDonutCart);
+  /*
+  const current_date = new Date();
+  const cart_date = new Date(cart.date);
+  if (Math.abs(current_date.getTime() - cart_date.getTime()) / 36e5 >= 0) {
+    setCart(
+      { date: current_date, donuts: {} } as DonutCart
+    );
+  }
+  */
 
   async function fetchDonuts() {
     try {
@@ -37,7 +43,7 @@ function DonutStore() {
 
   const navigate = useNavigate();
   function navigateCheckout() {
-    navigate('/checkout', { state: cart });
+    navigate('/checkout');
   }
 
   function updateCart(id: number, quantity: number) {
@@ -59,12 +65,12 @@ function DonutStore() {
           ? donutList.filter(donut => donut.available === true).map((donut) => {
               return (
                 <Grid>
-                  <DonutStoreItem 
-                    donut={donut} 
+                  <DonutStoreItem
+                    donut={donut}
                     initial_cart= {
                       donut.id in cart.donuts ? cart.donuts[donut.id] : 0
                     }
-                    updateCart = { updateCart } 
+                    updateCart = { updateCart }
                   />
                 </Grid>
               );
