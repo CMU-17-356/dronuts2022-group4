@@ -4,9 +4,7 @@ import React from 'react';
 // component imports
 import { Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image, Button } from '@geist-ui/react';
 import drone_img from '../images/drone.png';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import User, { EmptyUser } from '../types/User';
+import User from '../types/User';
 import Donut from '../types/Donut';
 
 // export interface Order {
