@@ -100,12 +100,12 @@ function DonutStoreCheckout() {
       return;
     }
     let current_order: Order = {
-      id: maxID,
-      customer: currentUser.id,
-      address: address,
-      status: 'Submitted',
-      purchase_date: new Date(),
-      items: donutCart.map((donut) => [donut.id, donut.quantity]),
+      "id": maxID,
+      "customer": currentUser.id,
+      "address": address,
+      "status": 'Submitted',
+      "purchase_date": new Date(),
+      "items": donutCart.map((donut) => [donut.id, donut.quantity]),
     };
     const request = {
       method: 'POST',
