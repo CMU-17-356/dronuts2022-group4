@@ -22,19 +22,10 @@ export interface Location {
 const default_center = {lat: 40.44, lng: -79.99};
 const default_loc = {center: default_center, zoom: 11};
 
-// bring line down
-// Progress bar sections
-// pictures next to location, dropoff indicator by for drone, donut images
-// 1) Through the navigate function is there a way to pass order? 
-// 2) What is end-to-end testing in terms of code
-// 3) Help with deployment
-
 function OrderStatus() {
   let params = useParams();
   const [donutList, setDonutList] = useState<Array<Donut>>([]);
-  const [orderList, setOrderList] = useState<Array<Order>>([]);
   const [order, setOrder] = useState<Order>();
-  const [orderID, setOrderID] = useState<Number>(-1);
 
   function getApiCredentials() {
     const key = google_maps_credentials_file.api_key;
@@ -63,7 +54,6 @@ function OrderStatus() {
   }
 
   async function getOrder(id: Number, orderList: Array<Order>){
-    console.log("getting order with id", id);
     let order = orderList.find(o => o.id === id);
     if(order !== undefined) {
       console.log("order: ", order);
@@ -76,13 +66,12 @@ function OrderStatus() {
       let orderList = await fetchOrders();
       let donuts = await fetchDonuts();
       let order = await getOrder(Number(params.id), orderList);
-      setOrderID(Number(params.id));
-      setOrderList(orderList);
       setDonutList(donuts);
       setOrder(order);
     };
     setup();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.id]);
 
   const location = useState<Location>(default_loc)[0];
   const api_key = useState(getApiCredentials())[0];
