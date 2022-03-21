@@ -14,7 +14,7 @@ function SignUpForm() {
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [donutID, setDonutID] = useState<number>(0);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [entered_accessLevel, set_entered_accessLevel] = useState<string>('customer');
+  const [entered_accessLevel, set_entered_accessLevel] = useState<string[]>(['']);
   
   const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ function SignUpForm() {
     setEnteredPhone('');
     setEnteredUsername('');
     setEnteredPassword('');
-    set_entered_accessLevel('customer');
+    set_entered_accessLevel(['customer']);
   }
 
   async function getMaxID(){
@@ -88,7 +88,7 @@ function SignUpForm() {
        enteredPhone === "" || 
        enteredUsername === "" || 
        enteredPassword === "" ||
-       entered_accessLevel === ""
+       entered_accessLevel === ['']
     ){
         alert("All values must be entered");
         resetEnteredInfo();
@@ -162,7 +162,8 @@ function SignUpForm() {
                     <Spacer h={1} />
                     <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
                     <input type="text" id="pass" name="password" placeholder="iLUVdonuts" value={enteredPassword} onChange={handlePasswordChange}></input>
-                    <Select id = "access_level"  placeholder="Choose one">
+                    
+                    <Select id = "access_level"  placeholder="Choose one" onChange = {handleAccessLevelChange}>
                       <Select.Option value="employee">Donut Store Employee</Select.Option>
                       <Select.Option value="owner">Donut Store Owner</Select.Option>
                       <Select.Option value="customer">Donut Store Customer</Select.Option>
