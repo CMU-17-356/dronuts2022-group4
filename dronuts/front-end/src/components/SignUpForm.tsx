@@ -14,7 +14,7 @@ function SignUpForm() {
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [donutID, setDonutID] = useState<number>(0);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [entered_accessLevel, set_entered_accessLevel] = useState<string[]>(['']);
+  const [entered_accessLevel, set_entered_accessLevel] = useState<string>('');
   
   const navigate = useNavigate();
 
@@ -46,21 +46,16 @@ function SignUpForm() {
     setEnteredPassword(event.target.value);
   }
 
-  function handleAccessLevelChange(event : React.ChangeEvent<any>) {
-    set_entered_accessLevel(event.target.value);
-  }
-
 
   function resetEnteredInfo () {
     alert('Incorrect information entered');
-    alert("This reset is being run within sign up page");
     setEnteredFirstName('');
     setEnteredLastName('');
     setEnteredEmail('');
     setEnteredPhone('');
     setEnteredUsername('');
     setEnteredPassword('');
-    set_entered_accessLevel(['customer']);
+    set_entered_accessLevel('');
   }
 
   async function getMaxID(){
@@ -88,7 +83,7 @@ function SignUpForm() {
        enteredPhone === "" || 
        enteredUsername === "" || 
        enteredPassword === "" ||
-       entered_accessLevel === ['']
+       entered_accessLevel === ""
     ){
         alert("All values must be entered");
         resetEnteredInfo();
@@ -133,6 +128,24 @@ function SignUpForm() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
+  
+  function handlerAccessLevel(event: React.ChangeEvent<any>) {
+    let value_access = "";
+    if(event.target.value === "1"){
+      value_access = "employee";
+      console.log(value_access);
+    } else if(event.target.value === "2") {
+      value_access = "owner";
+      console.log(value_access);
+    } else {
+      value_access = "customer";
+      console.log(value_access);
+    }
+    set_entered_accessLevel(value_access);
+  }
+
+
+
 
   return ( 
     <div className='HomeApp' >
@@ -163,12 +176,22 @@ function SignUpForm() {
                     <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
                     <input type="text" id="pass" name="password" placeholder="iLUVdonuts" value={enteredPassword} onChange={handlePasswordChange}></input>
                     
-                    <Select id = "access_level"  placeholder="Choose one" onChange = {handleAccessLevelChange}>
-                      <Select.Option value="employee">Donut Store Employee</Select.Option>
-                      <Select.Option value="owner">Donut Store Owner</Select.Option>
-                      <Select.Option value="customer">Donut Store Customer</Select.Option>
+                    
+                     {/* <Select placeholder="Choose one" onChange={handlerAccessLevel}>
+                      <Select.Option value="1" >Donut Store Employee</Select.Option>
+                      <Select.Option value="2" >Donut Store Owner</Select.Option>
+                      <Select.Option value="3"  >Donut Store Customer</Select.Option>
                     </Select>
-                    <Spacer h={8} />
+                    <Spacer h={8} /> */}
+                    
+
+                    <select name="cars" id="cars" onChange = {handlerAccessLevel}>
+                      <option value="1">Donut Store Employee</option>
+                      <option value="2">Donut Store Owner</option>
+                      <option value="3">Donut Store Customer</option>
+                    </select>
+
+
                     <input type="submit" value="Submit" />
                 </form>
             </Card.Content>
