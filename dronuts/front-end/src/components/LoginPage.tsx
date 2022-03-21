@@ -153,7 +153,7 @@ function LoginPage() {
                     <Spacer h={2} />
                     <input type="submit" value="Submit" />
                 </form>
-                <a href='/singup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
+                <a href='/signup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
             </Card.Content>
         </Card>
       </Card>
