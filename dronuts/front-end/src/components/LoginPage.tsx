@@ -53,8 +53,14 @@ function LoginPage() {
     setEnteredPassword('');
   }
 
+
+  /**
+   * HandleSubmit is used for the Login page, not the "signup" page.
+   */
   function handleSubmit() {
     const users = userList.filter(u => u.username === enteredUsername);
+    //add a console print statement for this query
+    //console.log(users.length);
     if (users.length === 0){
         alert('No users found');
         resetEnteredInfo();

@@ -47,6 +47,7 @@ function SignUpForm() {
 
   function resetEnteredInfo () {
     alert('Incorrect information entered');
+    alert("This reset is being run within sign up page");
     setEnteredFirstName('');
     setEnteredLastName('');
     setEnteredEmail('');
@@ -112,7 +113,6 @@ function SignUpForm() {
 
         await fetch('/set-users', requestOptions).then((res) => (res.json()));
       } catch (e) {
-        console.error(e);
         resetEnteredInfo();
       }
       setSubmitted(false);
