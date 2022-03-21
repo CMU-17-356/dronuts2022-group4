@@ -68,7 +68,7 @@ const EmployeeNotificationSystemOrder = (props: OrderItemProps) => {
         "id": order.id,
         "customer": order.customer,
         "address": order.address,
-        "status": 'Completed',
+        "status": 'Drone Heading Towards Destination',
         "purchase_date": order.purchase_date,
         "items": order.items
       };
