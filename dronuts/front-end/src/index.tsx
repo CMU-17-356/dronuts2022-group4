@@ -27,7 +27,10 @@ ReactDOM.render(
         <Route path='/drones' element={<DroneStatus />} />
         <Route path='/adminstore' element={<DonutAvailability />} />
         <Route path='/loadinstructions' element={<LoadOrders />} />
-        <Route path='/orderstatus' element={<OrderStatus />} />
+        {/* <Route path='/orderstatus/:id?' element={<OrderStatus />} /> */}
+        <Route path="orderstatus" element={<OrderStatus />}>
+          <Route path=":id" element={<OrderStatus />} />
+        </Route>
         <Route path='/storeorderhistory' element={<PurchasesList />} />
         <Route path='/empnotsys' element={<EmployeeNotificationSystem />} />
         <Route path='/checkout' element={<DonutStoreCheckout />} />
