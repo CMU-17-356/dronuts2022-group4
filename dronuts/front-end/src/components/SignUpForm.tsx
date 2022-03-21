@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // component imports
-import { Text, Spacer, Card, Divider, Button } from '@geist-ui/react';
+import { Text, Spacer, Card, Divider, Button, Select } from '@geist-ui/react';
 import './LoginPageStyle.css'
 import User from '../types/User';
 
@@ -153,7 +153,12 @@ function SignUpForm() {
                     <Spacer h={1} />
                     <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
                     <input type="text" id="pass" name="password" placeholder="iLUVdonuts" value={enteredPassword} onChange={handlePasswordChange}></input>
-                    <Spacer h={1} />
+                    <Select id = "access_level"  placeholder="Choose one">
+                      <Select.Option value="employee">Donut Store Employee</Select.Option>
+                      <Select.Option value="owner">Donut Store Owner</Select.Option>
+                      <Select.Option value="customer">Donut Store Customer</Select.Option>
+                    </Select>
+                    <Spacer h={8} />
                     <input type="submit" value="Submit" />
                 </form>
             </Card.Content>

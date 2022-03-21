@@ -66,6 +66,7 @@ function DonutStore() {
               return (
                 <Grid>
                   <DonutStoreItem
+                    key = {donut.id}
                     donut={donut}
                     initial_cart= {
                       donut.id in cart.donuts ? cart.donuts[donut.id] : 0
