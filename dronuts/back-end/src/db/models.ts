@@ -109,7 +109,7 @@ const userSchema = new Schema({
       lowercase: true,
       unique: true,
       required: true,
-      minlength: 5,
+      minlength: 3,
       maxlength: 50
   },
   password: {
@@ -117,7 +117,7 @@ const userSchema = new Schema({
     trim: true,
     unique: true,
     required: true,
-    minlength: 5,
+    minlength: 3,
     maxlength: 100
   },
   access_level: {
