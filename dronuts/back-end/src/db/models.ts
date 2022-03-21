@@ -68,7 +68,7 @@ const orderSchema = new Schema({
           },
   purchase_date: { type: Date, required: true, default: Date.now },
   // items: { type: [Schema.Types.ObjectId], ref: 'Donut', required: true }
-  items: { type: [[Number]], required: true }
+  items: { type: [[Number, Number]], required: true }
 });
 
 // User

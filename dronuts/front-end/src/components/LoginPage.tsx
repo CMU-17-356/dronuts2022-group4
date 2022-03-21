@@ -113,49 +113,26 @@ function LoginPage() {
       >Home</Button>
 
       <Spacer h={3} />
-
-      <Card
-        width="50%"
-        shadow
-        style={{
-          display: 'block',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          marginTop: '4em'
-        }}
-      >
-        <Image
-          width="30%"
-          src={ dronutLogoImg }
-          style={{
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: '1em'
-          }}
-        />
-        <Spacer h={3} />
-        <Card width="50%" shadow style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '4em'}}>
-            <Image width="30%"  src={dronutLogoImg} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '1em'}}/>
-            <Spacer h={3} />
-            <Card.Content>
-                <Text h2 style={{fontWeight: 'inherit', margin: 0}}>Sign In</Text>
-            </Card.Content>
-            <Divider h="1px" my={0} style={{color: '#FFF'}}/>
-            <Card.Content>
-                <form onSubmit={handleSubmit}>
-                    <Spacer h={0.5} />
-                    <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Username</Text>
-                    <input type="text" id="uname" name="username" placeholder="Usename" value={enteredUsername} onChange={handleUsernameChange}></input>
-                    <Spacer h={2} />
-                    <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
-                    <input type="text" id="pass" name="password" placeholder="Password" value={enteredPassword} onChange={handlePasswordChange}></input>
-                    <Spacer h={2} />
-                    <input type="submit" value="Submit" />
-                </form>
-                <a href='/singup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
-            </Card.Content>
-        </Card>
+      <Card width="50%" shadow style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '4em'}}>
+          <Image width="30%"  src={dronutLogoImg} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '1em'}}/>
+          <Spacer h={3} />
+          <Card.Content>
+              <Text h2 style={{fontWeight: 'inherit', margin: 0}}>Sign In</Text>
+          </Card.Content>
+          <Divider h="1px" my={0} style={{color: '#FFF'}}/>
+          <Card.Content>
+              <form onSubmit={handleSubmit}>
+                  <Spacer h={0.5} />
+                  <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Username</Text>
+                  <input type="text" id="uname" name="username" placeholder="Usename" value={enteredUsername} onChange={handleUsernameChange}></input>
+                  <Spacer h={2} />
+                  <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
+                  <input type="text" id="pass" name="password" placeholder="Password" value={enteredPassword} onChange={handlePasswordChange}></input>
+                  <Spacer h={2} />
+                  <input type="submit" value="Submit" />
+              </form>
+              <a href='/signup' onClick={navigateSignUp}><Text span type="success">Sign up?</Text></a>
+          </Card.Content>
       </Card>
     </div>
   );

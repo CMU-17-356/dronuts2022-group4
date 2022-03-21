@@ -99,13 +99,14 @@ function DonutStoreCheckout() {
       alert('Please fill out all information.');
       return;
     }
+    let curr_date = new Date()
     let current_order: Order = {
-      id: maxID,
-      customer: currentUser.id,
-      address: address,
-      status: 'Submitted',
-      purchase_date: new Date(),
-      items: donutCart.map((donut) => [donut.id, donut.quantity]),
+      "id": maxID,
+      "customer": currentUser.id,
+      "address": address,
+      "status": 'Submitted',
+      "purchase_date": curr_date,
+      "items": donutCart.map((donut) => [donut.id, donut.quantity]),
     };
     const request = {
       method: 'POST',
@@ -116,7 +117,8 @@ function DonutStoreCheckout() {
       alert('Order submitted!');
       setSubmitted(false);
       setCart(EmptyDonutCart);
-      navigate('/orderstatus');
+      let path = '/orderstatus/' + maxID.toString();
+      navigate(path);
     }, (err) => {
       alert('Unexpected error submitting order.');
     });
