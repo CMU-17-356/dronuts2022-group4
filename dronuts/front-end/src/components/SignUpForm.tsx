@@ -14,6 +14,7 @@ function SignUpForm() {
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [donutID, setDonutID] = useState<number>(0);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [entered_accessLevel, set_entered_accessLevel] = useState<string>('customer');
   
   const navigate = useNavigate();
 
@@ -45,6 +46,11 @@ function SignUpForm() {
     setEnteredPassword(event.target.value);
   }
 
+  function handleAccessLevelChange(event : React.ChangeEvent<any>) {
+    set_entered_accessLevel(event.target.value);
+  }
+
+
   function resetEnteredInfo () {
     alert('Incorrect information entered');
     alert("This reset is being run within sign up page");
@@ -54,6 +60,7 @@ function SignUpForm() {
     setEnteredPhone('');
     setEnteredUsername('');
     setEnteredPassword('');
+    set_entered_accessLevel('customer');
   }
 
   async function getMaxID(){
@@ -80,7 +87,8 @@ function SignUpForm() {
        enteredEmail === "" || 
        enteredPhone === "" || 
        enteredUsername === "" || 
-       enteredPassword === ""
+       enteredPassword === "" ||
+       entered_accessLevel === ""
     ){
         alert("All values must be entered");
         resetEnteredInfo();
@@ -95,6 +103,7 @@ function SignUpForm() {
         const phone = enteredPhone;
         const username = enteredUsername;
         const password = enteredPassword;
+        const access_level = entered_accessLevel;
         const new_user = [{"id": id, 
                             "first_name": first_name, 
                             "last_name": last_name, 
@@ -102,7 +111,7 @@ function SignUpForm() {
                             "phone_number": phone, 
                             "username": username,
                             "password": password, 
-                            "access_level": 'customer'
+                            "access_level": access_level
                           }];
 
         const requestOptions = {
