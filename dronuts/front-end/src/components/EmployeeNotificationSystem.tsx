@@ -6,13 +6,6 @@ import type { Order } from './EmployeeNotificationSystemOrder';
 import User from '../types/User';
 import Donut from '../types/Donut';
 
-interface Props {
-  order: Order
-  donitList: Array<Donut>
-  userList: Array<User>
-}
-
-
 function EmployeeNotificationSystem() {
   const [orderList, setOrderList] = useState<Array<Order>>([]);
   const [donutList, setDonutList] = useState<Array<Donut>>([]);

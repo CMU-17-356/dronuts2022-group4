@@ -1,4 +1,4 @@
-import { Card, Grid, Text, Page } from '@geist-ui/react';
+import { Card, Grid, Text } from '@geist-ui/react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Donut from '../types/Donut';
