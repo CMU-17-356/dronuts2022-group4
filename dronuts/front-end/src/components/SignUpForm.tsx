@@ -66,6 +66,7 @@ function SignUpForm() {
         const ids = response.map((donut) => donut.id);
         max_id = ids.reduce((prevId, newId, index)=>Math.max(prevId, newId), 0);
       }
+      console.log(max_id + 1);
       setDonutID(max_id + 1);
     } catch (e){
       console.error(e);
@@ -108,7 +109,7 @@ function SignUpForm() {
                             "password": password, 
                             "access_level": access_level
                           }];
-
+        
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -130,7 +131,7 @@ function SignUpForm() {
   }, [submitted]);
   
   function handlerAccessLevel(event: React.ChangeEvent<any>) {
-    let value_access = "";
+    let value_access = "employee";
     if(event.target.value === "1"){
       value_access = "employee";
       console.log(value_access);
