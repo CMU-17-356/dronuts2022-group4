@@ -8,6 +8,7 @@ import NavBarScroller from './NavbarScroller';
 import { useParams } from 'react-router-dom';
 import Order from '../types/Order';
 import Donut from '../types/Donut';
+import { useNavigate } from 'react-router-dom';
 
 
 export interface Center {
@@ -26,6 +27,8 @@ function OrderStatus() {
   let params = useParams();
   const [donutList, setDonutList] = useState<Array<Donut>>([]);
   const [order, setOrder] = useState<Order>();
+
+  const navigate = useNavigate();
 
   function getApiCredentials() {
     const key = google_maps_credentials_file.api_key;
@@ -93,6 +96,36 @@ function OrderStatus() {
     return 'No donut';
   }
 
+  function completeOrderClientSide(){
+    if(order !== undefined){
+      if(order.status === 'Drone Heading Towards Destination'){
+        let updated_order: Order = {
+          "id": order.id,
+          "customer": order.customer,
+          "address": order.address,
+          "status": 'Completed',
+          "purchase_date": order.purchase_date,
+          "items": order.items
+        };
+        const request = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify([updated_order]),
+        };
+        fetch('/set-orders', request).then((resp) => {
+          alert('Order submitted!');
+          navigate('/store');
+        }, (err) => {
+          alert('Unexpected error submitting order.');
+        });
+      } else {
+        alert('Order still being completed by store');
+      }
+      return;
+    }
+    alert('No order');
+  }
+
   return (
     <div className='DonutApp'>
       <NavBarScroller />
@@ -132,7 +165,7 @@ function OrderStatus() {
                 })
               : null : null}
             <Grid height="10vh"></Grid>
-            <Grid style={{position:'absolute', bottom:'2vh'}}><Button auto type="success" style={{width:'100%', marginLeft: '12.5vw'}}>Received Order</Button></Grid>
+            <Grid style={{position:'absolute', bottom:'2vh'}}><Button auto type="success" style={{width:'100%', marginLeft: '12.5vw'}} onClick={completeOrderClientSide}>Received Order</Button></Grid>
         </Grid.Container>
 
       </Grid.Container>
