@@ -14,7 +14,7 @@ function SignUpForm() {
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [donutID, setDonutID] = useState<number>(0);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [entered_accessLevel, set_entered_accessLevel] = useState<string>('');
+  const [enteredAccessLevel, setEnteredAccessLevel] = useState<string>('employee');
   
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ function SignUpForm() {
     setEnteredPhone('');
     setEnteredUsername('');
     setEnteredPassword('');
-    set_entered_accessLevel('');
+    setEnteredAccessLevel('employee');
   }
 
 
@@ -84,7 +84,7 @@ function SignUpForm() {
        enteredPhone === "" || 
        enteredUsername === "" || 
        enteredPassword === "" ||
-       entered_accessLevel === ""
+       enteredAccessLevel === ""
     ){
         alert("All values must be entered");
         resetEnteredInfo();
@@ -99,7 +99,7 @@ function SignUpForm() {
         const phone = enteredPhone;
         const username = enteredUsername;
         const password = enteredPassword;
-        const access_level = entered_accessLevel;
+        const access_level = enteredAccessLevel;
         const new_user = [{"id": id, 
                             "first_name": first_name, 
                             "last_name": last_name, 
@@ -132,17 +132,17 @@ function SignUpForm() {
   
   function handlerAccessLevel(event: React.ChangeEvent<any>) {
     let value_access = "employee";
-    if(event.target.value === "1"){
-      value_access = "employee";
-      console.log(value_access);
-    } else if(event.target.value === "2") {
+    if(event.target.value === "2"){
       value_access = "owner";
       console.log(value_access);
-    } else {
+    } else if(event.target.value === "3") {
       value_access = "customer";
       console.log(value_access);
+    } else {
+      value_access = "employee";
+      console.log(value_access);
     }
-    set_entered_accessLevel(value_access);
+    setEnteredAccessLevel(value_access);
   }
 
 
