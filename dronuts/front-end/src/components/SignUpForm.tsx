@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // component imports
-import { Text, Spacer, Card, Divider, Button } from '@geist-ui/react';
+import { Text, Spacer, Card, Divider, Button} from '@geist-ui/react';
 import './LoginPageStyle.css'
 import User from '../types/User';
 
@@ -14,6 +14,7 @@ function SignUpForm() {
   const [enteredPassword, setEnteredPassword] = useState<string>('');
   const [donutID, setDonutID] = useState<number>(0);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [entered_accessLevel, set_entered_accessLevel] = useState<string>('');
   
   const navigate = useNavigate();
 
@@ -45,15 +46,17 @@ function SignUpForm() {
     setEnteredPassword(event.target.value);
   }
 
+
   function resetEnteredInfo () {
-    alert('Incorrect information entered');
     setEnteredFirstName('');
     setEnteredLastName('');
     setEnteredEmail('');
     setEnteredPhone('');
     setEnteredUsername('');
     setEnteredPassword('');
+    set_entered_accessLevel('');
   }
+
 
   async function getMaxID(){
     try{
@@ -79,7 +82,8 @@ function SignUpForm() {
        enteredEmail === "" || 
        enteredPhone === "" || 
        enteredUsername === "" || 
-       enteredPassword === ""
+       enteredPassword === "" ||
+       entered_accessLevel === ""
     ){
         alert("All values must be entered");
         resetEnteredInfo();
@@ -94,6 +98,7 @@ function SignUpForm() {
         const phone = enteredPhone;
         const username = enteredUsername;
         const password = enteredPassword;
+        const access_level = entered_accessLevel;
         const new_user = [{"id": id, 
                             "first_name": first_name, 
                             "last_name": last_name, 
@@ -101,7 +106,7 @@ function SignUpForm() {
                             "phone_number": phone, 
                             "username": username,
                             "password": password, 
-                            "access_level": 'customer'
+                            "access_level": access_level
                           }];
 
         const requestOptions = {
@@ -109,10 +114,9 @@ function SignUpForm() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(new_user)
         };
-
+        
         await fetch('/set-users', requestOptions).then((res) => (res.json()));
       } catch (e) {
-        console.error(e);
         resetEnteredInfo();
       }
       setSubmitted(false);
@@ -124,6 +128,24 @@ function SignUpForm() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
+  
+  function handlerAccessLevel(event: React.ChangeEvent<any>) {
+    let value_access = "";
+    if(event.target.value === "1"){
+      value_access = "employee";
+      console.log(value_access);
+    } else if(event.target.value === "2") {
+      value_access = "owner";
+      console.log(value_access);
+    } else {
+      value_access = "customer";
+      console.log(value_access);
+    }
+    set_entered_accessLevel(value_access);
+  }
+
+
+
 
   return ( 
     <div className='HomeApp' >
@@ -153,7 +175,14 @@ function SignUpForm() {
                     <Spacer h={1} />
                     <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
                     <input type="text" id="pass" name="password" placeholder="iLUVdonuts" value={enteredPassword} onChange={handlePasswordChange}></input>
-                    <Spacer h={1} />
+                    
+                    <select name="cars" id="cars" onChange = {handlerAccessLevel}>
+                      <option value="1">Donut Store Employee</option>
+                      <option value="2">Donut Store Owner</option>
+                      <option value="3">Donut Store Customer</option>
+                    </select>
+
+
                     <input type="submit" value="Submit" />
                 </form>
             </Card.Content>
