@@ -98,7 +98,6 @@ const userSchema = new Schema({
   phone_number: {
       type: String,
       required: true,
-      unique: true,
       minLength: 10,
       maxlength: 17,
       match: [/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Please fill a valid phone number']
@@ -115,7 +114,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     trim: true,
-    unique: true,
     required: true,
     minlength: 3,
     maxlength: 100
