@@ -1,20 +1,8 @@
 import React from 'react';
-// import './App.css';
-
-// component imports
 import { Text, Card, Divider, Badge, Spacer, Grid, Checkbox, Image, Button } from '@geist-ui/react';
 import drone_img from '../images/drone.png';
 import User from '../types/User';
 import Donut from '../types/Donut';
-
-// export interface Order {
-//     id: number,
-//     items: [string],
-//     drone_id: number,
-//     customer_name: string,
-//     date: string,
-//     status: string
-// }
 
 export interface Order {
     id: number,
@@ -90,16 +78,19 @@ const EmployeeNotificationSystemOrder = (props: OrderItemProps) => {
             <Card.Content>
             <Grid.Container gap={2}>
                 {
-                    order.status === "Submitted" && <Grid><Badge type="error">Pending</Badge>  <Spacer h={.5} /></Grid>
+                    (order.status === "Submitted" || order.status === "Drone Heading Towards Destination") && <Grid><Badge type="error">Pending</Badge>  <Spacer h={.5} /></Grid>
                 }
                 {
                     order.status === "Completed" && <Grid><Badge type="success">Completed</Badge>  <Spacer h={.5} /></Grid>
                 }
-                {/* <Grid><Badge type="error">Pending</Badge>  <Spacer h={.5} /></Grid>
-                <Grid><Badge type="success">Completed</Badge>  <Spacer h={.5} /></Grid> */}
                 <Grid><Text h1 b my={0}>Order #{order.id}</Text></Grid>
                 <Spacer w={55} />
-                <Grid><Button auto type="warning" onClick={() => completeOrder()}>Complete</Button></Grid>
+                { order.status === "Submitted" && 
+                    <Grid><Button auto type="warning" onClick={() => completeOrder()}>Complete</Button></Grid>
+                }
+                {order.status === "Drone Heading Towards Destination" && 
+                    <Grid><Button auto disabled type="warning" >Complete</Button></Grid>
+                }
             </Grid.Container>
             </Card.Content>
             <Divider h="1px" my={0} />
@@ -114,9 +105,11 @@ const EmployeeNotificationSystemOrder = (props: OrderItemProps) => {
                                         order.status === "Submitted" && <Checkbox checked={false} type="default" scale={2.5}>{getItemDetails(item)}</Checkbox>
                                     }
                                     {
+                                        order.status === "Drone Heading Towards Destination" && <Checkbox disabled checked={true} type="default" scale={2.5}>{getItemDetails(item)}</Checkbox>
+                                    }
+                                    {
                                         order.status === "Completed" && <Checkbox disabled checked={true} type="default" scale={2.5}>{getItemDetails(item)}</Checkbox>
                                     }
-                                    {/* <Checkbox checked={false} type="default" scale={2.5}>{item}</Checkbox> */}
                                     <Spacer h={3} />
                                 </>
                             );

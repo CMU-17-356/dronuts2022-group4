@@ -54,7 +54,7 @@ function EmployeeNotificationSystem() {
       <Text h1 style={{textAlign:'center', marginBottom:'-1em'}}>Pending Orders</Text>
       <Page>
         {orderList
-          ? orderList.filter(order => order.status === "Submitted").map((order) => {
+          ? orderList.filter(order => order.status !== "Completed").map((order) => {
               return (
                 <div>
                     <EmployeeNotificationSystemOrder order={order} donutList={donutList} userList={userList}/>
