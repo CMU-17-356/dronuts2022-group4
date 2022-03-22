@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 import Order from '../types/Order';
 import Donut from '../types/Donut';
 import { useNavigate } from 'react-router-dom';
+import User, { EmptyUser } from '../types/User';
+import useLocalStorage from '../util/useLocalStorage';
 
 
 export interface Center {
@@ -27,6 +29,7 @@ function OrderStatus() {
   let params = useParams();
   const [donutList, setDonutList] = useState<Array<Donut>>([]);
   const [order, setOrder] = useState<Order>();
+  let currentUser: User = useLocalStorage('user', EmptyUser)[0];
 
   const navigate = useNavigate();
 
@@ -57,7 +60,16 @@ function OrderStatus() {
   }
 
   async function getOrder(id: Number, orderList: Array<Order>){
+
+    // order passed in via link
     let order = orderList.find(o => o.id === id);
+    if(order !== undefined) {
+      console.log("order: ", order);
+      return order;
+    }
+
+    // there is a current order associated with user
+    order = orderList.find(o => (o.customer === currentUser.id && o.status !== "Completed"))
     if(order !== undefined) {
       console.log("order: ", order);
       return order;
@@ -158,7 +170,6 @@ function OrderStatus() {
             <Grid height="2.5vh"><Text h2>Order details</Text></Grid>
             {order ? order.items
               ? order.items.map((item) => {
-                  console.log("ajdoajdajoadjas");
                   return (
                     <Grid height="2.5vh"><Text h4 style={{marginLeft:"5vw"}}>{getDonutDetails(item)}</Text></Grid>
                   );
