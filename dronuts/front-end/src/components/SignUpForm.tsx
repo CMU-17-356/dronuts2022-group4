@@ -57,9 +57,6 @@ function SignUpForm() {
     set_entered_accessLevel('');
   }
 
-  function resetEnteredInformationSuccess() {
-
-  }
 
   async function getMaxID(){
     try{
