@@ -48,7 +48,6 @@ function SignUpForm() {
 
 
   function resetEnteredInfo () {
-    alert('Incorrect information entered');
     setEnteredFirstName('');
     setEnteredLastName('');
     setEnteredEmail('');
@@ -56,6 +55,10 @@ function SignUpForm() {
     setEnteredUsername('');
     setEnteredPassword('');
     set_entered_accessLevel('');
+  }
+
+  function resetEnteredInformationSuccess() {
+
   }
 
   async function getMaxID(){
@@ -114,7 +117,7 @@ function SignUpForm() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(new_user)
         };
-
+        
         await fetch('/set-users', requestOptions).then((res) => (res.json()));
       } catch (e) {
         resetEnteredInfo();
