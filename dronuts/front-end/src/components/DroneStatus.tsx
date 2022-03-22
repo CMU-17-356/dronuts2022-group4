@@ -4,6 +4,8 @@ import droneImg from '../images/drone.png';
 import NavBarScroller from './NavbarScroller';
 
 
+interface DroneProps {}
+
 class DroneStatus extends React.Component {
   colors = {
     33: "red",
@@ -11,7 +13,7 @@ class DroneStatus extends React.Component {
     100: "green"
   };
 
-  constructor(props) {
+  constructor(props: DroneProps) {
     super(props);
     this.state = {
       drones: []
