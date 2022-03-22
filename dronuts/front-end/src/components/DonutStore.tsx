@@ -13,11 +13,13 @@ import DonutCart, { EmptyDonutCart } from '../types/DonutCart';
 // Local
 import DonutStoreItem from './DonutStoreItem';
 import NavBarScroller from './NavbarScroller';
+import User, { EmptyUser } from '../types/User';
 
 
 function DonutStore() {
   let [donutList, setDonutList] = useState<Array<Donut>>([]);
   let [cart, setCart] = useLocalStorage('cart', EmptyDonutCart);
+  let currentUser: User = useLocalStorage('user', EmptyUser)[0];
   /*
   const current_date = new Date();
   const cart_date = new Date(cart.date);
@@ -78,23 +80,10 @@ function DonutStore() {
             })
           : null}
       </Grid.Container>
-      {/* <Grid.Container gap={2} justify='center'>
-        {
-          donuts.map((donut) => (
-            <Grid key={donut.id}>
-              <DonutStoreItem
-                donut={donut}
-                initial_cart= {
-                  donut.id in cart.donuts ? cart.donuts[donut.id] : 0
-                }
-                updateCart = { updateCart }
-              />
-            </Grid>
-          ))
-        }
-      </Grid.Container> */}
       <Spacer h={2} />
-      <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', bottom: 10, right: '45%' }} onClick={navigateCheckout}>Checkout</Button>
+      {currentUser.id !== -1 &&
+        <Button auto scale={1.5} type="success" style={{ textTransform: 'uppercase', fontWeight: 'bold', position: 'absolute', bottom: 10, right: '45%' }} onClick={navigateCheckout}>Checkout</Button>
+      }
     </Page>
     </div>
   );
