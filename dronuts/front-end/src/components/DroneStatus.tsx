@@ -2,11 +2,16 @@ import React from 'react';
 import { Card, Divider, Grid, Image, Progress, Text } from '@geist-ui/react';
 import droneImg from '../images/drone.png';
 import NavBarScroller from './NavbarScroller';
+import Drone from '../types/Drone';
 
 
-interface DroneProps {}
+type DroneState = {
+  drones: Array<Drone>
+};
 
-class DroneStatus extends React.Component {
+type DroneProps = {};
+
+class DroneStatus extends React.Component<DroneProps, DroneState> {
   colors = {
     33: "red",
     66: "#FFA500",
@@ -25,8 +30,10 @@ class DroneStatus extends React.Component {
     for (const drone_id of drones_res.body.drones) {
       // fields: battery capacity, location, and delivery status
       const drone_res = await fetch(`http://drones.17-356.isri.cmu.edu/drones/${drone_id}`).then((res) => (res.json()));
+      var newDrones = [...this.state.drones];
+      newDrones.push(drone_res.body);
       this.setState({
-        drones: this.state.drones.append(drone_res.body)
+        drones: newDrones
       });
     }
   }
