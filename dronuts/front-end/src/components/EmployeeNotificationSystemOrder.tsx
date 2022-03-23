@@ -67,6 +67,7 @@ const EmployeeNotificationSystemOrder = (props: OrderItemProps) => {
       };
       fetch('/set-orders', request).then((resp) => {
         alert('Order completed!');
+        window.location.reload();
       }, (err) => {
         alert('Unexpected error updating order.');
       });
