@@ -98,10 +98,11 @@ function PurchasesList() {
       <Grid xs={24}>
         <Text h2>Purchases</Text>
       </Grid>
-      <Grid xs={24} justify="center">
+      
         {orderList
             ? orderList.filter(order => order.status === "Completed").map((order) => {
                 return (
+                  <Grid xs={24} justify="center">
                   <Card shadow width="90%">
                     <Grid.Container gap={2}>
                       <Grid xs={6}>
@@ -118,10 +119,11 @@ function PurchasesList() {
                       </Grid>
                     </Grid.Container>
                   </Card>
+                  </Grid>
                 );
               })
             : null}
-      </Grid>
+      
       {/* <Grid xs={24} justify="center">
         <Card shadow width="90%">
           <Grid.Container gap={2}>
