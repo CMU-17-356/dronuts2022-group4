@@ -98,10 +98,11 @@ function PurchasesList() {
       <Grid xs={24}>
         <Text h2>Purchases</Text>
       </Grid>
-      <Grid xs={24} justify="center">
+      
         {orderList
             ? orderList.filter(order => order.status === "Completed").map((order) => {
                 return (
+                  <Grid xs={24} justify="center">
                   <Card shadow width="90%">
                     <Grid.Container gap={2}>
                       <Grid xs={6}>
@@ -118,64 +119,10 @@ function PurchasesList() {
                       </Grid>
                     </Grid.Container>
                   </Card>
+                  </Grid>
                 );
               })
             : null}
-      </Grid>
-      {/* <Grid xs={24} justify="center">
-        <Card shadow width="90%">
-          <Grid.Container gap={2}>
-            <Grid xs={6}>
-              <Text>Aashai A.</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>5000 Forbes Ave</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>$20.00</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>December 26, 2021</Text>
-            </Grid>
-          </Grid.Container>
-        </Card>
-      </Grid>
-      <Grid xs={24} justify="center">
-        <Card shadow width="90%">
-          <Grid.Container gap={2}>
-            <Grid xs={6}>
-              <Text>Max D.</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>5000 Forbes Ave</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>$10.50</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>December 6, 2021</Text>
-            </Grid>
-          </Grid.Container>
-        </Card>
-      </Grid>
-      <Grid xs={24} justify="center">
-        <Card shadow width="90%">
-          <Grid.Container gap={2}>
-            <Grid xs={6}>
-              <Text>John N.</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>5000 Forbes Ave</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>$15.00</Text>
-            </Grid>
-            <Grid xs={6}>
-              <Text>October 30, 2021</Text>
-            </Grid>
-          </Grid.Container>
-        </Card>
-      </Grid> */}
     </Grid.Container>
     </div>
 
