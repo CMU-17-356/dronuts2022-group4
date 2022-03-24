@@ -270,17 +270,11 @@ describe('Drone Status Tests', function () {
 
     it('Navigates to employee notification system correctly', () => {
         cy.contains("Drone Status")
-        cy.contains("Drone 1")
-        cy.contains("Drone 2")
-        cy.contains("Drone 3")
-        cy.contains("Drone 4")
-        cy.contains("50% battery")
-        cy.contains("11% battery")
-        cy.contains("Delivering")
-        cy.contains("Returning")
-        cy.contains("Idle")
-        cy.contains("Charging")
-
+        cy.contains("#1: swift_pelican")
+        cy.contains("#2: snappy_wren")
+        cy.contains("#3: expeditious_jay")
+        cy.contains("#4: rapid_flycatcher")
+        cy.contains("100% battery")
     })
 })
 

@@ -26,12 +26,12 @@ class DroneStatus extends React.Component<DroneProps, DroneState> {
   }
 
   async componentDidMount() {
-    const drones_res = await fetch('http://drones.17-356.isri.cmu.edu/airbase/dronuts').then((res) => (res.json()));
-    for (const drone_id of drones_res.body.drones) {
+    const drones_res = await fetch('https://drone-api-cmu-17-356-s22.herokuapp.com/api/airbases/1').then((res) => (res.json()));
+    for (const drone_id of drones_res.drones) {
       // fields: battery capacity, location, and delivery status
-      const drone_res = await fetch(`http://drones.17-356.isri.cmu.edu/drones/${drone_id}`).then((res) => (res.json()));
+      const drone_res = await fetch(`https://drone-api-cmu-17-356-s22.herokuapp.com/api/drones/${drone_id}`).then((res) => (res.json()));
       var newDrones = [...this.state.drones];
-      newDrones.push(drone_res.body);
+      newDrones.push(drone_res);
       this.setState({
         drones: newDrones
       });
@@ -47,13 +47,14 @@ class DroneStatus extends React.Component<DroneProps, DroneState> {
         <Grid xs={24}><Text h2>Drone Status</Text></Grid>
         <Divider h={5} />
         {this.state.drones.map((drone) => {
+          console.log(drone);
           return (
             <Grid xs={6} justify="center">
               <Card shadow width="90%">
                 <Image src={droneImg}/>
-                <Text h4>{drone.id}</Text>
-                <Text>{`${drone.battery}% battery`}</Text>
-                <Progress value={drone.battery} colors={this.colors} width="90%" />
+                <Text h4>#{drone.id}: {drone.drone_name}</Text>
+                <Text>{`${(drone.battery.charge / drone.battery.capacity) * 100}% battery`}</Text>
+                <Progress value={(drone.battery.charge / drone.battery.capacity) * 100} colors={this.colors} width="90%" />
                 <Text type="success">{drone.status}</Text>
               </Card>
             </Grid>
