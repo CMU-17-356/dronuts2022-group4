@@ -26,6 +26,7 @@
 !*.eslintignore
 !*.prettierignore
 !*.prettierrc
+!e2e.test.js
 
 
 # Blacklist (overrides Whitelist)
