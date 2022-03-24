@@ -113,45 +113,82 @@ describe('Store page tests', function () {
     beforeEach(() => {
         cy.visit('http://localhost:3000/login')
         cy.get('[id=uname]').type('cypresstester')
-        cy.get('[id=pass]').type('pasword')
+        cy.get('[id=pass]').type('testing101')
         cy.get('form').submit()
         cy.visit('http://localhost:3000/store')
     })
 
     it('Navigates to store page correctly', () => {
-        cy.get('Card').contains('SFD')
-        cy.get('Card').contains('GLAZED')
-        cy.get('Card').contains('CHOCOLATE FROSTING')
+        cy.get('Button').contains('Checkout')
+        cy.contains('SFD')
+        cy.contains('Glazed')
+        cy.contains('Chocolate frosting')
     })
 
     it('Navigates to checkout page correctly', () => {
         cy.get('Button').contains('Checkout').click()
         cy.location('pathname').should('eq', '/checkout')
     })
-    
 
     it('Adds items to cart correctly', () => {
+        cy.contains('SFD').get('Button').contains('+').click()
+        cy.contains('SFD').get('Button').contains('+').click()
         cy.get('Button').contains('Checkout').click()
         cy.location('pathname').should('eq', '/checkout')
+        cy.contains('SFD ($2) x2');
+    })
+})
+
+
+describe('Checkout page tests', function () {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/login')
+        cy.get('[id=uname]').type('cypresstester')
+        cy.get('[id=pass]').type('testing101')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/store')
+        cy.contains('SFD').get('Button').contains('+').click()
+        cy.contains('SFD').get('Button').contains('+').click()
+        cy.get('Button').contains('Checkout').click()
     })
 
-    it('Adds items to cart correctly', () => {
-        cy.get('Button').contains('Checkout').click()
-        cy.location('pathname').should('eq', '/checkout')
+    it('Navigates to checkout page correctly', () => {
+        cy.get('Button').contains('Place Order')
+        cy.contains('Delivery Details')
+        cy.contains('Name')
+        cy.contains('Address')
+        cy.contains('Credit Card Details')
+        cy.contains('Name')
+        cy.contains('Number')
+        cy.contains('Expiration Date')
+        cy.contains('Security Code')
+        cy.contains('SFD ($2) x2');
     })
 
-    it('Adds items to cart correctly', () => {
-        cy.get('Button').contains('Checkout').click()
-        cy.location('pathname').should('eq', '/checkout')
+    it('Places order correctly', () => {
+        cy.get('[id=ddname]').type('Cypress Tester')
+        cy.get('[id=address]').type('5555 Beeler St.')
+        cy.get('[id=ccname]').type('Cypress Tester')
+        cy.get('[id=cardnum]').type('1234567890')
+        cy.get('[id=expdate]').type('05/30')
+        cy.get('[id=seccode]').type('999')
+        cy.get('Button').contains('Place Order').click()
+        cy.on('window:alert',(txt)=>{
+            //Mocha assertions
+            expect(txt).to.contains('Order submitted!');
+         })
     })
 
-    it('Adds items to cart correctly', () => {
-        cy.get('Button').contains('Checkout').click()
-        cy.location('pathname').should('eq', '/checkout')
-    })
-
-    it('Adds items to cart correctly', () => {
-        cy.get('Button').contains('Checkout').click()
-        cy.location('pathname').should('eq', '/checkout')
+    it('Places order incorrectly', () => {
+        cy.get('[id=ddname]').type('Cypress Tester')
+        cy.get('[id=address]').type('5555 Beeler St.')
+        cy.get('[id=ccname]').type('Cypress Tester')
+        cy.get('[id=cardnum]').type('1234567890')
+        cy.get('[id=expdate]').type('05/30')
+        cy.get('Button').contains('Place Order').click()
+        cy.on('window:alert',(txt)=>{
+            //Mocha assertions
+            expect(txt).to.contains('Please fill out all information.');
+         })
     })
 })
