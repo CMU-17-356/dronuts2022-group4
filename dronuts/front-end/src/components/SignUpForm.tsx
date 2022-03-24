@@ -176,8 +176,9 @@ function SignUpForm() {
                     <Spacer h={1} />
                     <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>Password</Text>
                     <input type="text" id="pass" name="password" placeholder="iLUVdonuts" value={enteredPassword} onChange={handlePasswordChange}></input>
-                    
-                    <select name="cars" id="cars" onChange = {handlerAccessLevel}>
+                    <Spacer h={1} />
+                    <Text h4 style={{marginRight: '50%', fontWeight: 'inherit', margin: 0}}>User Type</Text>
+                    <select name="usertypes" id="utypes" onChange = {handlerAccessLevel}>
                       <option value="1">Donut Store Employee</option>
                       <option value="2">Donut Store Owner</option>
                       <option value="3">Donut Store Customer</option>

@@ -4,7 +4,8 @@
   "description": "Dronuts project for CMU's 17-356",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "@types/google-map-react": "^2.1.4",
     "@types/jest": "^27.4.0",
     "@types/styled-components": "^5.1.23",
+    "cypress": "^9.5.2",
     "jest": "^27.5.1",
     "react-icons": "^4.3.1",
     "ts-jest": "^27.1.3",
