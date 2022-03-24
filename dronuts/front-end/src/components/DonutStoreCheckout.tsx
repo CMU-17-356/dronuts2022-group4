@@ -145,15 +145,15 @@ function DonutStoreCheckout() {
       </Card>
       <Card>
         <Text h3>Delivery Details</Text>
-        <Input value={customerName} onChange={(e) => setCustomerName(e.target.value)}>Name</Input>
-        <Input value={address} onChange={(e) => setAddress(e.target.value)}>Address</Input>
+        <Input id="ddname" value={customerName} onChange={(e) => setCustomerName(e.target.value)}>Name</Input>
+        <Input id="address" value={address} onChange={(e) => setAddress(e.target.value)}>Address</Input>
       </Card>
       <Card>
         <Text h3>Credit Card Details</Text>
-        <Input value={cardName} onChange={(e) => setCardName(e.target.value)}>Name</Input>
-        <Input value={cardNum} onChange={(e) => setCardNum(e.target.value)}>Number</Input>
-        <Input value={cardExpDate} placeholder="01/30" onChange={(e) => setCardExpDate(e.target.value)}>Expiration Date</Input>
-        <Input value={cardSecCode} onChange={(e) => setCardSecCode(e.target.value)}>Security Code</Input>
+        <Input id="ccname" value={cardName} onChange={(e) => setCardName(e.target.value)}>Name</Input>
+        <Input id="cardnum" value={cardNum} onChange={(e) => setCardNum(e.target.value)}>Number</Input>
+        <Input id="expdate" value={cardExpDate} placeholder="01/30" onChange={(e) => setCardExpDate(e.target.value)}>Expiration Date</Input>
+        <Input id="seccode" value={cardSecCode} onChange={(e) => setCardSecCode(e.target.value)}>Security Code</Input>
       </Card>
       <Button onClick={() => setSubmitted(true)}>Place Order</Button>
     </Page>

@@ -74,7 +74,6 @@ function AddDonutForm() {
        enteredPrice === "" || 
        enteredNutritionInfo === ""
     ){
-        alert("All values must be entered");
         resetEnteredInfo();
         return;
     }
