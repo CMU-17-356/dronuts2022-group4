@@ -25,6 +25,7 @@
     "express": "^4.17.2",
     "mongodb-memory-server": "^8.3.0",
     "mongoose": "^6.2.7",
+    "puppeteer": "^13.5.1",
     "react-jsx": "^1.0.0",
     "sinon": "^13.0.1",
     "styled-components": "^5.3.3"
@@ -35,6 +36,7 @@
     "@types/google-map-react": "^2.1.4",
     "@types/jest": "^27.4.0",
     "@types/styled-components": "^5.1.23",
+    "cypress": "^9.5.2",
     "jest": "^27.5.1",
     "react-icons": "^4.3.1",
     "ts-jest": "^27.1.3",
