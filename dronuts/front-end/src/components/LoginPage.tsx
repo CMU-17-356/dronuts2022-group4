@@ -62,7 +62,6 @@ function LoginPage() {
     //add a console print statement for this query
     //console.log(users.length);
     if (users.length === 0){
-        alert('No users found');
         resetEnteredInfo();
         return;
     }
@@ -82,7 +81,6 @@ function LoginPage() {
                 return;
         }
     } else {
-      alert('Incorrect password');
       resetEnteredInfo();
       return;
     }
