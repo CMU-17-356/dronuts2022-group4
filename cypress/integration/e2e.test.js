@@ -1,3 +1,5 @@
+const { createLogicalNot } = require("typescript")
+
 describe('Home page tests', function () {
     beforeEach(() => {
         cy.visit('http://localhost:3000')
