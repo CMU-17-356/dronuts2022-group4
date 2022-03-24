@@ -192,3 +192,157 @@ describe('Checkout page tests', function () {
          })
     })
 })
+
+
+describe('Order Status page tests', function () {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/login')
+        cy.get('[id=uname]').type('cypresstester')
+        cy.get('[id=pass]').type('testing101')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/store')
+        cy.contains('SFD').get('Button').contains('+').click()
+        cy.contains('SFD').get('Button').contains('+').click()
+        cy.get('Button').contains('Checkout').click()
+        cy.get('[id=ddname]').type('Cypress Tester')
+        cy.get('[id=address]').type('5555 Beeler St.')
+        cy.get('[id=ccname]').type('Cypress Tester')
+        cy.get('[id=cardnum]').type('1234567890')
+        cy.get('[id=expdate]').type('05/30')
+        cy.get('[id=seccode]').type('999')
+        cy.get('Button').contains('Place Order').click()
+        cy.visit('http://localhost:3000/orderstatus')
+    })
+
+    it('Navigates to order status correctly', () => {
+        cy.get('Button').contains('Received Order')
+        cy.contains('Estimated Arrival Time')
+        cy.contains('Delivery details')
+        cy.contains('Meet at Location');
+        cy.contains('5555 Beeler St., Pittsburgh, PA 15217')
+        cy.contains('Order details')
+        cy.contains('SFD x 2');
+    })
+
+    it('Recieves order', () => {
+        cy.get('Button').contains('Received Order').click()
+        cy.on('window:alert',(txt)=>{
+            //Mocha assertions
+            expect(txt).to.contains('Order still being completed by store');
+         })
+    })
+})
+
+
+// Owner E2E tests
+describe('Admin store page tests', function () {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/login')
+        cy.get('[id=uname]').type('mdunaevs')
+        cy.get('[id=pass]').type('password')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/adddonut')
+        cy.get('[id=dname]').type('Cypress Donut')
+        cy.get('[id=desc]').type('Cypress donut test')
+        cy.get('[id=imgurl]').type('https://testdonut')
+        cy.get('[id=price]').type('0.70')
+        cy.get('[id=nutinfo]').type('Gluten Free')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/adminstore')
+        cy.contains('Cypress Donut')
+    })
+
+    it('Navigates to admin store correctly', () => {
+        cy.contains('SFD')
+        cy.contains('Glazed')
+        cy.contains('Chocolate frosting')
+        cy.contains('Cypress Donut')
+        cy.get('Button').contains('Add Donut')
+    })
+
+    it('Disable donut', () => {
+        cy.visit('http://localhost:3000/store')
+        cy.contains('SFD')
+        cy.contains('Glazed')
+        cy.contains('Chocolate frosting')
+        cy.contains('Cypress Donut')
+        cy.visit('http://localhost:3000/adminstore')
+        cy.contains('Cypress Donut').click()
+        cy.visit('http://localhost:3000/store')
+        cy.contains('Glazed')
+        cy.contains('Chocolate frosting')
+        cy.contains('SFD')
+        cy.get('Cypress Donut').should('not.exist');
+    })
+
+    it('Visit Add donut page correctly', () => {
+        cy.get('Button').contains('Add Donut').click()
+        cy.location('pathname').should('eq', '/adddonut')
+    })
+})
+
+describe('Add donut page tests', function () {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/login')
+        cy.get('[id=uname]').type('mdunaevs')
+        cy.get('[id=pass]').type('password')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/adddonut')
+    })
+
+    it('Navigates to add donut page correctly', () => {
+        cy.contains('Donut name')
+        cy.contains('Description')
+        cy.contains('Image URL')
+        cy.contains('Price')
+        cy.contains('Nutrition Info')
+        cy.get('form').contains('Submit')
+        cy.get('Button').contains('Cancel')
+    })
+
+    it('Cancel add', () => {
+        cy.get('Button').contains('Cancel').click()
+        cy.location('pathname').should('eq', '/adminstore')
+    })
+
+    it('Create a donut correctly', () => {
+        cy.get('[id=dname]').type('Cypress Donut')
+        cy.get('[id=desc]').type('Cypress donut test')
+        cy.get('[id=imgurl]').type('https://testdonut')
+        cy.get('[id=price]').type('0.70')
+        cy.get('[id=nutinfo]').type('Gluten Free')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/adminstore')
+        cy.contains('Cypress Donut')
+    })
+
+    it('Create a donut incorrectly', () => {
+        cy.get('[id=dname]').type('Cypress Donut')
+        cy.get('[id=desc]').type('Cypress donut test')
+        cy.get('[id=imgurl]').type('https://testdonut')
+        cy.get('[id=nutinfo]').type('Gluten Free')
+        cy.get('form').submit()
+        cy.on('window:alert',(txt)=>{
+            //Mocha assertions
+            expect(txt).to.contains('Incorrect information entered');
+         })
+    })
+})
+
+describe('Store order history page', function () {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/login')
+        cy.get('[id=uname]').type('mdunaevs')
+        cy.get('[id=pass]').type('password')
+        cy.get('form').submit()
+        cy.visit('http://localhost:3000/storeorderhistory')
+    })
+
+    it('Navigates to add donut page correctly', () => {
+        cy.contains('Purchases')
+        cy.contains('John Doe')
+        cy.contains('12321321')
+        cy.contains('$5.83')
+        cy.contains('03-22-2022')
+    })
+})
