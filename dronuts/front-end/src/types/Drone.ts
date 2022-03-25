@@ -1,6 +1,13 @@
 export default interface Drone {
   id: number;
-  battery: number;
-  location: string;
+  battery: {
+    capacity: number;
+    charge: number;
+  };
+  drone_name: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
   status: string;
 };
